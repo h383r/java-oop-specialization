@@ -1,9 +1,10 @@
 # Object Oriented Programming in Java
 **Duke University on Coursera**
 
+Resources:
 - https://www.dukelearntoprogram.com//course2/index.php
 - https://www.dukelearntoprogram.com//downloads/bluej.php?course=3
-- Libraries: https://www.dukelearntoprogram.com//course2/doc/javadoc/index.html?course=2
+- https://www.dukelearntoprogram.com//course2/doc/javadoc/index.html?course=2
 - https://www.dukelearntoprogram.com//downloads/bluej.php?course=3
 
 ## Course 1: Solving Problems with Software
@@ -31,6 +32,7 @@ Content:
 
 https://www.coursera.org/learn/object-oriented-java?specialization=object-oriented-programming  
 
+Content:
 - Visualizing Data
 - Memory Models, Scope, and Starting the Project
 - Graphical output: Creating GUIs and Displaying Data
@@ -42,6 +44,7 @@ https://www.coursera.org/learn/object-oriented-java?specialization=object-orient
 
 https://www.coursera.org/learn/data-structures-optimizing-performance?specialization=object-oriented-programming  
 
+Content:
 - Working with Strings
 - Efficiency Analysis and Benchmarking
 - Interfaces, Linked Lists vs. Arrays, and Correctness
