@@ -1,36 +1,34 @@
 # Object Oriented Programming in Java
 **Duke University on Coursera**
 
-Resources:
+Libraries:
 - https://www.dukelearntoprogram.com//course2/index.php
-- https://www.dukelearntoprogram.com//downloads/bluej.php?course=3
-- https://www.dukelearntoprogram.com//course2/doc/javadoc/index.html?course=2
-- https://www.dukelearntoprogram.com//downloads/bluej.php?course=3
+- edu.duke.*; // https://www.dukelearntoprogram.com//downloads/archives/courserajava.jar
+- java.io.File; // https://www.dukelearntoprogram.com//downloads/archives/apache-csv.jar
 
+---
 ## Course 1: Solving Problems with Software
-
-https://www.coursera.org/learn/java-programming?specialization=object-oriented-programming  
 
 Content:
 - Introduction  
 - Java Syntax and Semantics
 - Strings in Java
 - CSV Files and Basic Statics in Java
+
+Projects:
+- Calculating the Perimeter of a Shape
+- Finding a Gene and Web Links
 - MiniProject: Baby Names
-
+---
 ## Course 2: Arrays, Lists, and Structured Data
-
-https://www.coursera.org/learn/java-programming-arrays-lists-data?specialization=object-oriented-programming  
 
 Content:
 - Cryptography: Keeping Information Secret
 - GladLibs: Stories from Templates
 - Web Server Logs: From Logs to Visits
 - MiniProject: Vigenere Cipher
-
+---
 ## Course 3: Object Oriented Programming in Java
-
-https://www.coursera.org/learn/object-oriented-java?specialization=object-oriented-programming  
 
 Content:
 - Visualizing Data
@@ -39,10 +37,8 @@ Content:
 - Inheritance
 - GUIs: Responding to User Events
 - Searching and Sorting: From Code to Algorithms
-
+---
 ## Course 4: Data Structures and Performance
-
-https://www.coursera.org/learn/data-structures-optimizing-performance?specialization=object-oriented-programming  
 
 Content:
 - Working with Strings
