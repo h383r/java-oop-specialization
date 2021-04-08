@@ -1,10 +1,12 @@
 # Object Oriented Programming in Java
 **Duke University on Coursera**
 
-Libraries:
+Resources:
 - https://www.dukelearntoprogram.com//course2/index.php
-- edu.duke.*; // https://www.dukelearntoprogram.com//downloads/archives/courserajava.jar
-- java.io.File; // https://www.dukelearntoprogram.com//downloads/archives/apache-csv.jar
+
+Programming Exercise:
+- 1.1.1. Calculating a Shape’s Perimeter
+- 1.2.1. Finding a Gene and Web Links
 
 ---
 ## Course 1: Solving Problems with Software
