@@ -9,7 +9,7 @@ Programming Exercise:
 - 1.2.1. Finding a Gene and Web Links
 
 ---
-## Course 1: Solving Problems with Software
+### Course 1: Solving Problems with Software
 
 Content:
 - Introduction  
@@ -22,7 +22,7 @@ Projects:
 - Finding a Gene and Web Links
 - MiniProject: Baby Names
 ---
-## Course 2: Arrays, Lists, and Structured Data
+### Course 2: Arrays, Lists, and Structured Data
 
 Content:
 - Cryptography: Keeping Information Secret
@@ -30,7 +30,7 @@ Content:
 - Web Server Logs: From Logs to Visits
 - MiniProject: Vigenere Cipher
 ---
-## Course 3: Object Oriented Programming in Java
+### Course 3: Object Oriented Programming in Java
 
 Content:
 - Visualizing Data
@@ -40,7 +40,7 @@ Content:
 - GUIs: Responding to User Events
 - Searching and Sorting: From Code to Algorithms
 ---
-## Course 4: Data Structures and Performance
+### Course 4: Data Structures and Performance
 
 Content:
 - Working with Strings
