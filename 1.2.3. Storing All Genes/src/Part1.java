@@ -1,7 +1,9 @@
+import edu.duke.*;
+
 public class Part1 {
 
     public int findStopCodon (String dna, int beginIndex, String stopCodon) {
-        
+            
         int currIndex =  dna.indexOf(stopCodon, beginIndex + 3);
 
         while (currIndex != -1) {
@@ -19,29 +21,6 @@ public class Part1 {
         }
         // If there is no such stopCodon, returns the length of the dna strand
         return -1;
-    }
-
-    public void testFindStopCodon () {
-
-        String dna = "xxxyyyzzzTAAxxxyyyzzzTAAxx";
-        int t1 = 0;
-
-        // 9
-        t1 = findStopCodon(dna, 0, "TAA");        
-        System.out.println(t1);
-
-        // 21
-        t1 = findStopCodon(dna, 9, "TAA");
-        System.out.println(t1);
-
-        // 26
-        t1 = findStopCodon(dna, 1, "TAA");        
-        System.out.println(t1);
-
-        // 26
-        t1 = findStopCodon(dna, 0, "TAG");        
-        System.out.println(t1);
-
     }
 
     public String findGene (String dna, int pos) {
@@ -84,33 +63,10 @@ public class Part1 {
         return dna.substring(beginIndex, minIndex + 3);    
     }
 
-    public void testFindGene () {
+    // Return a StorageResource containing the genes found
+    public StorageResource getAllGenes (String dna) {
 
-        // DNA with no “ATG”
-        String dna1 = "ccccccccccccccccccccc";
-        
-        // DNA with “ATG” and one valid stop codon
-        String dna2 = "cccATGcccccccccTAAccc";
-        
-        // DNA with “ATG” and multiple valid stop codons
-        String dna3 = "cccATGcccTAAcccTAGccc";
-        
-        //DNA with “ATG” and no valid stop codons
-        String dna4 = "cccATGccTAAccccTAGccc";
-        
-        // DNA with “ATG” no stop codons
-        String dna5 = "cccATGccccccccccccccc";
-
-        System.out.println("Gene in dna1 = " + findGene(dna1, 0));
-        System.out.println("Gene in dna2 = " + findGene(dna2, 0));
-        System.out.println("Gene in dna3 = " + findGene(dna3, 0));
-        System.out.println("Gene in dna4 = " + findGene(dna4, 0));
-        System.out.println("Gene in dna5 = " + findGene(dna5, 0));
-
-    }
-
-    public void printAllGenes (String dna) {
-
+        StorageResource geneList = new StorageResource();
         int beginIndex = 0;
 
         while (true) {
@@ -123,27 +79,32 @@ public class Part1 {
                 break;
             }
             else {
-                // Print current gene found
-                System.out.println(currentGene);
+                // Add gene to geneList
+                geneList.add(currentGene);
 
                 // Set beginIndex at the end of currentGene
                 beginIndex = dna.indexOf(currentGene, beginIndex) + currentGene.length();
             }
         }
+        return geneList;
     }
 
-    public void testPrintAll () {
+    public void testGetAllGenes (String dna) {
+        
+        StorageResource genes = getAllGenes(dna);
 
-        String dna = "atgatctaatttatgctgctgcaacggtgaagaatgatctaatttatgctgctgcaacggtgaaga";
-        printAllGenes(dna);
+        for (String g : genes.data()) {
+            System.out.println(g);
+        }
+    }
 
+    public void test () {
+        testGetAllGenes("ATGTAAGATGCCCTAGT");
+        testGetAllGenes("");
     }
 
     public static void main (String[] args) {
         Part1 p1 = new Part1();
-        //p1.testFindStopCodon();
-        //p1.testFindGene();
-        p1.testPrintAll();
-
-    }       
+        p1.test();
+    }
 }

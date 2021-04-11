@@ -26,9 +26,9 @@ public class Part4 {
                 int endIndex = lcWord.indexOf("\"", index);
 
                 // Substring between left " and right " is the url
-                String url = word.substring(beginIndex + 1, endIndex);
+                String urlSub = word.substring(beginIndex + 1, endIndex);
                 
-                result = result + url + "\n";
+                result = result + urlSub + "\n";
             }
         }
         return result;
