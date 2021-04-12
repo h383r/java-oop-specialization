@@ -12,7 +12,6 @@
 ### Content:
 
 **Course 1: Solving Problems with Software**
-- Introduction  
 - Java Syntax and Semantics
 - Strings in Java
 - CSV Files and Basic Statics in Java
