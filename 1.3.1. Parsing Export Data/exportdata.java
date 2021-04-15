@@ -58,12 +58,18 @@ public class exportdata {
 
         for (CSVRecord record : parser) {
 
-            String value = record.get("Value (dollars)");
+            String originalValue = record.get("Value (dollars)");
             String country = record.get("Country");
 
-            if (value.length() > amount.length()) {
+            String value = originalValue.replace("$", "").replace(",", "");
+            long numericalValue = Long.parseLong(value);
 
-                System.out.println(country + " " + value);
+            amount = amount.replace("$", "").replace(",", "");
+            long numericalAmount = Long.parseLong(amount);
+
+            if (numericalValue > numericalAmount) {
+
+                System.out.println(country + " " + originalValue);
 
             }
         }
@@ -77,7 +83,7 @@ public class exportdata {
         //System.out.println(countryInfo(parser, "Germany"));
         //listExportersTwoProducts(parser, "gold", "diamonds");
         //System.out.println(numberOfExporters(parser, "gold"));
-        //bigExporters(parser, "$999,999,999");
+        bigExporters(parser, "$999,999,999");
     }
 
     public static void main (String[] args) {
