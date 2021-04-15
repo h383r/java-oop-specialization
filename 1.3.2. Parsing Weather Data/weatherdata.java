@@ -150,7 +150,6 @@ public class weatherdata {
         
         weatherdata.hottestHourInFileTest();
         //weatherdata.coldestHourInFileTest();
-        
         //weatherdata.hottestHourInManyFilesTest();
            
     }    
