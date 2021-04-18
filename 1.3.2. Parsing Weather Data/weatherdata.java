@@ -1,10 +1,6 @@
-import java.io.File;
-
-import org.apache.commons.csv.CSVParser;
-import org.apache.commons.csv.CSVRecord;
-
-import edu.duke.DirectoryResource;
-import edu.duke.FileResource;
+import java.io.*;
+import edu.duke.*;
+import org.apache.commons.csv.*;
 
 public class weatherdata {
     
@@ -75,8 +71,6 @@ public class weatherdata {
         CSVRecord csv = hottestHourInManyFiles();
         System.out.println("hottest temperature was " + csv.get("TemperatureF") + " at " + csv.get("DateUTC"));
     }
-    
-    // Programming Exercise ====================================================
 
     /**
      * Search for the lowest temperature in the file
@@ -248,6 +242,70 @@ public class weatherdata {
         System.out.println("Lowest Humidity was " + csv.get("Humidity") + " at " + csv.get("DateUTC"));
     }
 
+    /**
+     * Calculate average temperature in the file
+     * @param parser CSVParser
+     * @return Average temperature in the file
+     */
+    public double averageTemperatureInFile(CSVParser parser) {
+
+        double totalTemperature = 0.0;
+        int totalValues = 0;
+
+        for (CSVRecord currentRow : parser) {
+            double currentTemperature = Double.parseDouble(currentRow.get("TemperatureF"));
+            totalTemperature = totalTemperature + currentTemperature;
+            totalValues = totalValues + 1;
+        }
+        return totalTemperature / totalValues;
+    }
+
+    public void averageTemperatureInFileTest() {
+        FileResource fr = new FileResource("data/nc_weather/2014/weather-2014-01-20.csv");
+        CSVParser parser = fr.getCSVParser();
+        System.out.println("Average temperature in file is " + averageTemperatureInFile(parser));
+    }
+
+    /**
+     * Searc for temperatures when the humidity was greater than or equal to value.
+     * @param parser CSVParser
+     * @param value Humidity greater than or equal to
+     * @return Temperature when humidity was greather or equal to value
+     */
+    public double averageTemperatureWithHighHumidityInFile(CSVParser parser, int value) {
+
+        double totalTemperature = 0.0;
+        int totalValues = 0;
+
+        for (CSVRecord currentRow : parser) {
+            
+            double currentHumidity = Double.parseDouble(currentRow.get("Humidity"));
+            double currentTemperature = Double.parseDouble(currentRow.get("TemperatureF"));
+
+            if ((currentRow.get("Humidity")) == "N/A" || currentTemperature == -9999) {
+                break;
+            }
+            else if (currentHumidity >= value){
+                totalTemperature = totalTemperature + currentTemperature;
+                totalValues = totalValues + 1;
+            }    
+        }
+        return totalTemperature / totalValues;
+    }
+
+    public void averageTemperatureWithHighHumidityInFileTest() {
+        FileResource fr = new FileResource("data/nc_weather/2014/weather-2014-03-20.csv");
+        CSVParser parser = fr.getCSVParser();
+
+        double test = averageTemperatureWithHighHumidityInFile(parser, 80);
+        if (Double.isNaN(test)) {
+            System.out.println("No temperatures with that humidity");
+        }
+        else {   
+            System.out.println("Average Temp when high Humidity is " + test);
+        }
+    }
+
     public static void main(String[] args) {
         weatherdata weatherdata = new weatherdata();
         
@@ -256,7 +314,9 @@ public class weatherdata {
         //weatherdata.hottestHourInManyFilesTest();
         //weatherdata.fileWithColdestTemperatureTest();
         //weatherdata.lowestHumidityInFileTest();
-        weatherdata.lowestHumidityInManyFilesTest();
+        //weatherdata.lowestHumidityInManyFilesTest();
+        //weatherdata.averageTemperatureInFileTest();
+        weatherdata.averageTemperatureWithHighHumidityInFileTest();
 
     }    
 }
