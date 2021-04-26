@@ -83,7 +83,12 @@ public class exportdata {
         //System.out.println(countryInfo(parser, "Germany"));
         //listExportersTwoProducts(parser, "gold", "diamonds");
         //System.out.println(numberOfExporters(parser, "gold"));
-        bigExporters(parser, "$999,999,999");
+        //bigExporters(parser, "$999,999,999");
+
+        //listExportersTwoProducts(parser, "cotton", "flowers");
+        //System.out.println(numberOfExporters(parser, "cocoa"));
+        bigExporters(parser, "$999,999,999,999"); //one trillion US dollars or more
+
     }
 
     public static void main (String[] args) {
