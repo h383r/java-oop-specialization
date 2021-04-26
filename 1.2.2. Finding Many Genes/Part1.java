@@ -87,7 +87,7 @@ public class Part1 {
     public void testFindGene () {
 
         // DNA with no “ATG”
-        String dna1 = "ccccccccccccccccccccc";
+        String dna1 = "AATGCTAACTAGCTGACTAAT";
         
         // DNA with “ATG” and one valid stop codon
         String dna2 = "cccATGcccccccccTAAccc";
@@ -142,8 +142,8 @@ public class Part1 {
     public static void main (String[] args) {
         Part1 p1 = new Part1();
         //p1.testFindStopCodon();
-        //p1.testFindGene();
-        p1.testPrintAll();
+        p1.testFindGene();
+        //p1.testPrintAll();
 
     }       
 }

@@ -40,7 +40,7 @@ public class Part2 {
     
     
     public static void main (String[] args) {
-        Part2 p2 = new Part2();
+        TG p2 = new TG();
         p2.testHowMany();
     }
 }

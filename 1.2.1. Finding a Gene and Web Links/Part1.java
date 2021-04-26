@@ -37,7 +37,7 @@ public class Part1 {
         // Test Cases
 
         // DNA with no “ATG”
-        String testCase1 = "CCCCCCCCCCCCCCCTAACCC";
+        String testCase1 = "AAATGCCCTAACTAGATTAAGAAACC";
         // DNA with no “TAA”
         String testCase2 = "CCCATGCCCCCCCCCCCCCCC";
         // DNA with no “ATG” or “TAA”

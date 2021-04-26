@@ -107,9 +107,17 @@ public class Part3 {
         } 
         return (float) cg / dna.length();
     }
-    
+
     // Processes all the strings in sr to find out information about them.     
     public void processGenes (StorageResource sr) {
+
+        // How many genes
+        int totalGenes = 0;
+
+        for (String str : sr.data()) {
+            totalGenes = totalGenes + 1;   
+        }
+        System.out.println("Total Genes = " + totalGenes);
 
         // print all the Strings in sr that are longer than 9 characters
         int longerThan9 = 0;
@@ -183,7 +191,7 @@ public class Part3 {
     
     public void testProcessGenes () {
 
-        FileResource fr = new FileResource(); //"GRch38dnapart.fa"
+        FileResource fr = new FileResource("brca1line.fa");
 		String file = fr.asString();
         StorageResource genes = getAllGenes(file);
         processGenes(genes);

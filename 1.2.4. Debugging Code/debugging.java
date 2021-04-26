@@ -11,8 +11,10 @@ public class debugging {
             index = input.indexOf("abc", index+4);
         }
     }
+
     public void test() {
-        //no code yet
+        //findAbc("abcd"); //should print bcd
+        findAbc("abcdabc");
     }
 
 

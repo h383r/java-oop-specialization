@@ -31,7 +31,7 @@ public class weatherdata {
     }
     
     public void hottestHourInFileTest() {
-        FileResource fr = new FileResource("data/nc_weather/2015/weather-2015-01-02.csv");
+        FileResource fr = new FileResource("data/testing/2015/weather-2015-01-02.csv");
         CSVParser parser = fr.getCSVParser();
         CSVRecord csv = hottestHourInFile(parser);
         System.out.println("hottest temperature was " + csv.get("TemperatureF") + " at " + csv.get("TimeEST"));
@@ -103,7 +103,7 @@ public class weatherdata {
     }
 
     public void coldestHourInFileTest() {
-        FileResource fr = new FileResource("data/nc_weather/2015/weather-2015-01-02.csv");
+        FileResource fr = new FileResource("data/testing/2015/weather-2015-01-02.csv");
         CSVParser parser = fr.getCSVParser();
         CSVRecord csv = coldestHourInFile(parser);
         System.out.println("coldest temperature was " + csv.get("TemperatureF") + " at " + csv.get("TimeEST"));
@@ -261,7 +261,7 @@ public class weatherdata {
     }
 
     public void averageTemperatureInFileTest() {
-        FileResource fr = new FileResource("data/nc_weather/2014/weather-2014-01-20.csv");
+        FileResource fr = new FileResource("data/testing/2014/weather-2014-01-20.csv");
         CSVParser parser = fr.getCSVParser();
         System.out.println("Average temperature in file is " + averageTemperatureInFile(parser));
     }
@@ -294,7 +294,7 @@ public class weatherdata {
     }
 
     public void averageTemperatureWithHighHumidityInFileTest() {
-        FileResource fr = new FileResource("data/nc_weather/2014/weather-2014-03-20.csv");
+        FileResource fr = new FileResource("data/testing/2014/weather-2014-03-20.csv");
         CSVParser parser = fr.getCSVParser();
 
         double test = averageTemperatureWithHighHumidityInFile(parser, 80);

@@ -99,8 +99,7 @@ public class Part1 {
     }
 
     public void test () {
-        testGetAllGenes("ATGTAAGATGCCCTAGT");
-        testGetAllGenes("");
+        testGetAllGenes();
     }
 
     public static void main (String[] args) {

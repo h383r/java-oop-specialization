@@ -1,3 +1,5 @@
+import edu.duke.*;
+
 public class Part2 {
 
     // Ratio of C’s and G’s in dna
@@ -54,7 +56,9 @@ public class Part2 {
     }
 
     public void testCountCTG() {
-        System.out.println(countCTG("XXCTGXXXXCTGXXXXCTGXXXCTG"));
+        FileResource fr = new FileResource(); //"GRch38dnapart.fa"
+		String file = fr.asString();
+        System.out.println("CTG APPEARS = " + countCTG(file));
     }
 
     public static void main (String[] args) {

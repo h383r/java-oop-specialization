@@ -2,40 +2,40 @@ import edu.duke.URLResource;
 
 public class Part4 {
     
-    public String youtubeURL(){
+    public void youtubeURL(){
         
         String url = "https://www.dukelearntoprogram.com//course2/data/manylinks.html";
-        URLResource urlResource = new URLResource(url);
-        String result = "";
+        URLResource file = new URLResource(url);
 
-        // For each word in urlResource
-        for (String word : urlResource.words()) {
-            
-            // Set to lowercase without modify the original String
-            String lcWord = word.toLowerCase();
-            
-            int index = lcWord.indexOf("youtube.com");
-            
-            // If "youtube.com" appears
-            if (index != -1) {
+        for (String item : file.words()) {
+            String itemLower = item.toLowerCase();
+            int pos = itemLower.indexOf("youtube.com");
+            if (pos != -1) {
 
-                // Index of left "
-                int beginIndex = lcWord.lastIndexOf("\"", index);
+                /*
+                int beg = itemLower.lastIndexOf("\"", pos);
+                int end = itemLower.indexOf("\"", pos+1);
+                System.out.println(item.substring(beg+1,end));
+                */
 
-                // Index of right "
-                int endIndex = lcWord.indexOf("\"", index);
+                /*
+                int beg = item.lastIndexOf("\"",pos);
+                int end = item.indexOf("\"", pos+1);
+                System.out.println(item.substring(beg+1,end));
+                */
 
-                // Substring between left " and right " is the url
-                String urlSub = word.substring(beginIndex + 1, endIndex);
-                
-                result = result + urlSub + "\n";
+                int beg = itemLower.indexOf("\"",pos-9);
+                int end = itemLower.indexOf("\"", pos+1);
+                System.out.println(itemLower.substring(beg+1,end));
+
+
+
             }
         }
-        return result;
     }
 
     public static void main (String[] args) {
         Part4 p4 = new Part4();
-        System.out.println("Youtube URL:\n" + p4.youtubeURL());
+        p4.youtubeURL();
     }
 }

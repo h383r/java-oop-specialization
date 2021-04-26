@@ -50,11 +50,12 @@ public class PerimeterAssignmentRunner {
         for (Point currentPoint: s.getPoints()) {
 
             // Calculate distance from last to current point
-            double distance = currentPoint.distance(lastPoint);
+            double currentDistance = lastPoint.distance(currentPoint);
 
             // Search for largest side
-            if (distance > largestSide) {
-                largestSide = distance;
+            if (currentDistance > largestSide) {
+                largestSide = currentDistance;
+                lastPoint = currentPoint;
             }
         }
         return largestSide;
@@ -194,8 +195,8 @@ public class PerimeterAssignmentRunner {
         for (Point p : triangle.getPoints()){
             System.out.println(p);
         }
-        double peri = getPerimeter(triangle);
-        System.out.println("perimeter = "+peri);
+        double perimeter = getPerimeter(triangle);
+        System.out.println("perimeter = "+perimeter);
     }
 
     // This method prints names of all files in a chosen folder
@@ -208,10 +209,10 @@ public class PerimeterAssignmentRunner {
 
     public static void main (String[] args) {
         PerimeterAssignmentRunner pr = new PerimeterAssignmentRunner();
-        pr.testPerimeter();
+        //pr.testPerimeter();
         //pr.triangle();
         //pr.printFileNames();
         //pr.testPerimeterMultipleFiles();
-        //pr.testFileWithLargestPerimeter();
+        pr.testFileWithLargestPerimeter();
     }
 }
