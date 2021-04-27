@@ -8,6 +8,8 @@
 - 1.2.2. Finding Many Genes
 - 1.2.3. Storing All Genes
 - 1.2.3. Debugging Code
+- 1.3.1. Parsing Export Data
+- 1.3.2. Parsing Weather Data
 
 ### Content:
 

@@ -4,6 +4,9 @@ import org.apache.commons.csv.*;
 
 public class names {
 
+    /**
+     * Print out the names for which 100 or fewer babies were born in a chosen CSV file of baby name data.
+     */
     public void printNames() {
         FileResource fr = new FileResource();
         CSVParser parser = fr.getCSVParser(false); // False = no header row
@@ -21,6 +24,9 @@ public class names {
         }
     }
 
+    /**
+     * Print out total number of babies born, as well as for each gender, in a given CSV file of baby name data.
+     */
     public void totalBirths() {
         FileResource fr = new FileResource();
         CSVParser parser = fr.getCSVParser(false);
@@ -47,11 +53,37 @@ public class names {
 
     //ASSIGNMENT ===============================================================
 
+    public void getRank(int year, String name, String gender) {
+        
+    }
+
+
+    //getName
+
+
+
+    //whatIsNameInYear
+
+
+
+    //yearOfHighestRank
+
+
+
+    //getAverageRank
+
+
+
+    //getTotalBirthsRankedHigher    
+
+
+
 
     
     public static void main(String[] args) {
         names names = new names();
-        //names.printNames();
+
+        names.printNames();
         names.totalBirths();
 
     }
