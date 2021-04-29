@@ -1,4 +1,12 @@
 /Notas/**
-/1.3.2. Parsing Weather Data/temp/**
-/1.4.1. Names Project/temp/**
+
+/1.3.2. Parsing Weather Data/data/2012/**
+/1.3.2. Parsing Weather Data/data/2013/**
+/1.3.2. Parsing Weather Data/data/2014/**
+/1.3.2. Parsing Weather Data/data/2015/**
+
+/1.4.1. Names Project/data/us_babynames_by_decade/**
+/1.4.1. Names Project/data/us_babynames_by_year/**
+/1.4.1. Names Project/data/us_babynames_test/**
+
 /1.4.2. Batch Grayscale and Image Inversion/temp/**
