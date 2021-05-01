@@ -5,9 +5,9 @@ You have learned how to convert an image to grayscale, and how to select and pro
 
 More specifically,
 
-1. Your program should let the user select multiple image files  
-2. For each image, create a new image that is a grayscale version of the original image  
-3. For each image, save the grayscale image in a new file with the same filename as the original image, but with the word “gray-” in front of the filename. For example, if the original file was named lion.png, the new image would be a grayscale image and be named gray-lion.png.  
+1. Your program should let the user select multiple image files
+2. For each image, create a new image that is a grayscale version of the original image
+3. For each image, save the grayscale image in a new file with the same filename as the original image, but with the word “gray-” in front of the filename. For example, if the original file was named lion.png, the new image would be a grayscale image and be named gray-lion.png.
 
 Hint: Start with the Batch Grayscale program that processes many images, and add in code to save those files with new names.  
 
