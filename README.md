@@ -10,6 +10,8 @@
 - 1.2.3. Debugging Code
 - 1.3.1. Parsing Export Data
 - 1.3.2. Parsing Weather Data
+- 1.4.1. Names Project
+- 1.4.2. Grayscale Algorithm
 
 ### Content:
 
