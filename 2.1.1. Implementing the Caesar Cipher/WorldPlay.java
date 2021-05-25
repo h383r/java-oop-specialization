@@ -21,11 +21,13 @@ public class WorldPlay {
         StringBuilder sb = new StringBuilder(phrase);
 
         for (int i = 0; i < sb.length(); i++ ) {
+
             char currentCharacter = sb.charAt(i);
-            int currentIndex = phrase.indexOf(currentCharacter, i);
+            //int currentIndex = phrase.indexOf(currentCharacter, i);
 
             if(isVowel(currentCharacter)) {
-                sb.setCharAt(currentIndex, ch);
+                //sb.setCharAt(currentIndex, ch);
+                sb.setCharAt(i, ch);
             }
         }
         return sb.toString();
@@ -45,7 +47,7 @@ public class WorldPlay {
 
             char currentCharacter = sb.charAt(i);
             int currentIndex = phrase.indexOf(currentCharacter, i);
-
+            
             if (currentCharacter == ch && ((currentIndex+1) % 2 == 0)) {
                 sb.setCharAt(currentIndex, '+');
             }
@@ -58,13 +60,35 @@ public class WorldPlay {
         return sb.toString();
     }
 
+    /**
+     *  Return true if ch is either ‘a’ or ‘e’, and otherwise return false.
+     */
+    public boolean isAorE(char ch) {
+        /*
+        if (ch == 'a' || ch == 'e') {
+            return true;
+        }
+        return false;
+        */
+        if (ch == 'a') {
+            return true;
+        }
+        if (ch == 'e') {
+            return true;
+        }
+       return false;
+    }
+
     public static void main(String[] args) {
         WorldPlay WorldPlay = new WorldPlay();
 
         //Test Cases
-        System.out.println(WorldPlay.isVowel('a'));
+        //System.out.println(WorldPlay.isVowel('a'));
         System.out.println(WorldPlay.replaceVowels("qwerty", 'X'));
-        System.out.println(WorldPlay.emphatize("xxxxxxxxxxxxxxxx", 'x'));
+        //System.out.println(WorldPlay.emphatize("xxxxxxxxxxxxxxxx", 'x'));
+        //System.out.println(WorldPlay.isAorE('e'));
+        //System.out.println(WorldPlay.isAorE('a'));
+        //System.out.println(WorldPlay.isAorE('i'));
 
     }
 }

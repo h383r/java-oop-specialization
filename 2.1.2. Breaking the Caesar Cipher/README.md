@@ -19,9 +19,12 @@ For example, after this method executes, counts k should contain the number of w
 
 2. Write a void method **testCountWordLengths** that creates a FileResource so you can select a file, and creates a counts integer array of size 31. This method should call countWordLengths with a file and then print the number of words of each length. Test it on the small file smallHamlet.txt shown below.
 
-3. Write a method **indexOfMax** that has one parameter named values that is an integer array. This method returns the index position of the largest element in values. Then add code to the method testCountWordLengths to call indexOfMax to determine the most common word length in the file.  
+3. Write a method **indexOfMax** that has one parameter named values that is an integer array. This method returns the index position of the largest element in values. 
+
+4. Then add code to the method **testCountWordLengths** to call indexOfMax to determine the most common word length in the file.  
 For example, calling indexOfMax after calling countWordLengths on the file smallHamlet.txt should return 3.  
-First test your program on a small file, such as this simple file shown called smallHamlet.txt:  
+
+5. First test your program on a small file, such as this simple file shown called smallHamlet.txt:  
 "Laer. My necessaries are embark'd. Farewell. And, sister, as the winds give benefit"  
 Note this file has words that are:
 

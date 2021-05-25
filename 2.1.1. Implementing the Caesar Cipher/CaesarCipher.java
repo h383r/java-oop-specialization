@@ -16,6 +16,7 @@ public class CaesarCipher {
             
             if (Character.isLowerCase(currentCharacter)) {
                 int currentIndex = alphabet.toLowerCase().indexOf(currentCharacter);
+                
                 if (currentIndex != -1) {
                     char newCharacter = shiftedAlphabet.toLowerCase().charAt(currentIndex);
                     encrypted.setCharAt(i, newCharacter);
@@ -23,6 +24,7 @@ public class CaesarCipher {
             } 
             else  {
                 int currentIndex = alphabet.indexOf(currentCharacter);
+                
                 if (currentIndex != -1) {
                     char newCharacter = shiftedAlphabet.charAt(currentIndex);
                     encrypted.setCharAt(i, newCharacter);
@@ -63,10 +65,11 @@ public class CaesarCipher {
         CaesarCipher caesarCipher = new CaesarCipher();
 
         //Test cases
-        System.out.println(caesarCipher.encrypt("FIRST LEGION ATTACK EAST FLANK!", 23));
+        //System.out.println(caesarCipher.encrypt("FIRST LEGION ATTACK EAST FLANK!", 23));
         //caesarCipher.encryptFile();
         //System.out.println(caesarCipher.encryptTwoKeys("First Legion", 23, 17));
+        System.out.println(caesarCipher.encrypt("At noon be in the conference room with your hat on for a surprise party. YELL LOUD!", 15));
+        System.out.println(caesarCipher.encryptTwoKeys("At noon be in the conference room with your hat on for a surprise party. YELL LOUD!", 8, 21));
 
     }
-
 }
