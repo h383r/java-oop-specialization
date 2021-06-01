@@ -1,30 +1,31 @@
 # Object Oriented Programming in Java
 **Duke University on Coursera**
 
-
-### Programming Exercises *(course.week.exercise)*: 
-- 1.1.1. Calculating a Shape’s Perimeter
-- 1.2.1. Finding a Gene and Web Links
-- 1.2.2. Finding Many Genes
-- 1.2.3. Storing All Genes
-- 1.2.3. Debugging Code
-- 1.3.1. Parsing Export Data
-- 1.3.2. Parsing Weather Data
-- 1.4.1. Names Project
-- 1.4.2. Grayscale Algorithm
-
 ### Content:
 
 **Course 1: Solving Problems with Software**
 - Java Syntax and Semantics
 - Strings in Java
 - CSV Files and Basic Statics in Java
+- Programming Exercises:
+    - 1.1.1. Calculating a Shape’s Perimeter
+    - 1.2.1. Finding a Gene and Web Links
+    - 1.2.2. Finding Many Genes
+    - 1.2.3. Storing All Genes
+    - 1.2.3. Debugging Code
+    - 1.3.1. Parsing Export Data
+    - 1.3.2. Parsing Weather Data
+    - 1.4.1. Names Project
+    - 1.4.2. Grayscale Algorithm
 
 **Course 2: Arrays, Lists, and Structured Data**
 - Cryptography: Keeping Information Secret
 - GladLibs: Stories from Templates
 - Web Server Logs: From Logs to Visits
-- MiniProject: Vigenere Cipher
+- Programming Exercises:
+    - 2.1.1. Implementing the Caesar Cipher
+    - 2.1.2. Breaking the Caesar Cipher
+    - 2.1.3. Object Oriented Caesar Cipher
 
 **Course 3: Object Oriented Programming in Java**
 - Visualizing Data
