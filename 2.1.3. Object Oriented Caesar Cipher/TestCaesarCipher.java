@@ -7,7 +7,7 @@ public class TestCaesarCipher {
      * @param message
      * @return
      */
-    public int[] countLetters (String message) {
+    private int[] countLetters (String message) {
         
         String alphabet = "abcdefghijklmnopqrstuvwxyz";
         int[] counts = new int[26];
@@ -100,13 +100,23 @@ public class TestCaesarCipher {
         // Decrypt it automatically by determining the key
         String decryptedAuto = breakCaesarCipher(encrypted);
         System.out.println("Automatic Decrypted message: " + decryptedAuto);
+        
+    }
+
+    public void quiz () {
+
+        // Question 1
+        CaesarCipher cc = new CaesarCipher(15);
+        String input = "Can you imagine life WITHOUT the internet AND computers in your pocket?";
+        System.out.println((cc.encrypt(input)));
 
     }
-    
+
     public static void main (String[] args) {
         
         TestCaesarCipher test = new TestCaesarCipher();
-        test.simpleTest();
+        //test.simpleTest();
+        test.quiz();
         
     }
 }

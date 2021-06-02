@@ -90,6 +90,9 @@ public class TestCaesarCipherTwo {
         int key1 = getKey(halfKey1);
         int key2 = getKey(halfKey2);
 
+        System.out.println("Key 1: " + (26 - key1));
+        System.out.println("Key 2: " + (26 - key2));
+
         // create a CaesarCipher object with that key and decrypt the message.
         CaesarCipherTwo cct = new CaesarCipherTwo(key1, key2);
         String decrypted = cct.encrypt(input);
@@ -123,10 +126,33 @@ public class TestCaesarCipherTwo {
 
     }
 
+    public void quiz () {
+
+        // Question 2
+        CaesarCipherTwo cct = new CaesarCipherTwo(21, 8);
+        String input = "Can you imagine life WITHOUT the internet AND computers in your pocket?";
+        System.out.println((cct.encrypt(input)));
+
+        // Question 6
+        CaesarCipherTwo cct6 = new CaesarCipherTwo(14, 24);
+        String input6 = "Hfs cpwewloj loks cd Hoto kyg Cyy.";
+        System.out.println((cct6.decrypt(input6)));
+
+        // Question 7
+        System.out.println(breakCaesarCipher("Aal uttx hm aal Qtct Fhljha pl Wbdl. Pvxvxlx!"));
+
+        // Question 8 - 9
+        FileResource fr = new FileResource();
+        String input8 = fr.asString();
+        System.out.println(breakCaesarCipher(input8));  
+
+    }
+
     public static void main (String[] args) {
 
         TestCaesarCipherTwo test = new TestCaesarCipherTwo();
-        test.simpleTest();
+        //test.simpleTest();
+        test.quiz();
         
     }
 
