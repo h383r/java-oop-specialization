@@ -110,7 +110,7 @@ public class weatherdata {
     }
 
     /**
-     *  Search for the file that has the coldest temperature
+     * Search for the file that has the coldest temperature
      * @return Name of the file from selected files that has the coldest temperature
      */
     public String fileWithColdestTemperature() {

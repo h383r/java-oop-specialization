@@ -6,6 +6,8 @@ public class WordLengths {
      * Read in the words from resource and count the number of words
      * of each length for all the words in resource, storing these
      * counts in the array counts. 
+     * @param resource
+     * @param counts
      */
     public void countWordLengths(FileResource resource, int[] counts) {
         
@@ -25,6 +27,8 @@ public class WordLengths {
     
     /**
      * Returns the index position of the largest element in values.
+     * @param values
+     * @return
      */
     public int indexOfMax(int[] values) {
         
@@ -70,15 +74,11 @@ public class WordLengths {
         System.out.println(wordlength);
     }
 
-
-
     public static void main(String[] args) {
         WordLengths wordLengths = new WordLengths();
         wordLengths.countWordLengthsTest();
 
         //wordLengths.checkCharacter("asd32fsdf3");
 
-
-        
     }
 }

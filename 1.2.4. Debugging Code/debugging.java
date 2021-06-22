@@ -1,6 +1,4 @@
 public class debugging {
-    
-    //Debugging Excercise
 
     /**
      * finds each occurrence of “abc_” in a String input
@@ -21,6 +19,9 @@ public class debugging {
         }
     }
 
+    /**
+     * Test Cases
+     */
     public void test() {
         //findAbc("abcd"); //should print bcd
         findAbc("abcdabc");

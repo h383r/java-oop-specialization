@@ -4,6 +4,7 @@ public class DiceRolling {
 
 	/**
 	 * Simulate rolling two six-sided die, keep statistics
+	 * @param rolls
 	 */
 	public void simulate(int rolls) {
 
@@ -22,6 +23,10 @@ public class DiceRolling {
 		}
 	}
 	
+	/**
+	 * 
+	 * @param rolls
+	 */
 	public void simpleSimulate(int rolls) {
 
 		Random rand = new Random();

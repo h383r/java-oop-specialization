@@ -3,7 +3,8 @@ import edu.duke.*;
 public class CommonWords {
 	
 	/**
-	 *  
+	 * 
+	 * @return
 	 */
     public String[] getCommon() {
 
@@ -20,6 +21,9 @@ public class CommonWords {
 	
 	/**
 	 * 
+	 * @param list
+	 * @param word
+	 * @return
 	 */
 	public int indexOf(String[] list, String word) {
 
@@ -33,6 +37,9 @@ public class CommonWords {
 	
 	/**
 	 * 
+	 * @param resource
+	 * @param common
+	 * @param counts
 	 */
 	public void countWords(FileResource resource, String[] common, int[] counts) {
 		

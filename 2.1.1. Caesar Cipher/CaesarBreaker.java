@@ -4,6 +4,8 @@ public class CaesarBreaker {
 
     /**
      * Returns the index of the most frecuent letter in String message.
+     * @param message
+     * @return
      */
     public int[] countLetters(String message) {
         
@@ -24,6 +26,8 @@ public class CaesarBreaker {
 
     /**
      * Returns the index of the most frecuent letter in frecuency array.
+     * @param vals
+     * @return
      */
     public int maxIndex(int[] vals) {
 
@@ -40,6 +44,8 @@ public class CaesarBreaker {
 
     /**
      * Returns a String decrypted using the Caesar Cipher algorithm
+     * @param encrypted
+     * @return
      */
     public String decrypt(String encrypted) {
 
@@ -72,6 +78,9 @@ public class CaesarBreaker {
     /**
      * Return a new String that is every other character from message 
      * starting with the start position
+     * @param message
+     * @param start
+     * @return
      */
     public String halfOfString(String message, int start) {
         /*

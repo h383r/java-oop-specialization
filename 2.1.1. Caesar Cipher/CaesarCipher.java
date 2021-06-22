@@ -4,6 +4,9 @@ public class CaesarCipher {
     
     /**
      * Returns a String encrypted using the Caesar Cipher algorithm
+     * @param input
+     * @param key
+     * @return
      */
     public String encrypt(String input, int key) {
 
@@ -44,6 +47,13 @@ public class CaesarCipher {
         System.out.println("key is " + 23 + "\n" + encrypted);  
     }
 
+    /**
+     * Returns a String encrypted using the Caesar Cipher algorithm
+     * @param input
+     * @param key1
+     * @param key2
+     * @return
+     */
     public String encryptTwoKeys(String input, int key1, int key2) {
 
         StringBuilder encrypted = new StringBuilder(input);
@@ -65,11 +75,9 @@ public class CaesarCipher {
         CaesarCipher caesarCipher = new CaesarCipher();
 
         //Test cases
-        //System.out.println(caesarCipher.encrypt("FIRST LEGION ATTACK EAST FLANK!", 23));
+        System.out.println(caesarCipher.encrypt("FIRST LEGION ATTACK EAST FLANK!", 23));
         //caesarCipher.encryptFile();
         //System.out.println(caesarCipher.encryptTwoKeys("First Legion", 23, 17));
-        System.out.println(caesarCipher.encrypt("At noon be in the conference room with your hat on for a surprise party. YELL LOUD!", 15));
-        System.out.println(caesarCipher.encryptTwoKeys("At noon be in the conference room with your hat on for a surprise party. YELL LOUD!", 8, 21));
 
     }
 }

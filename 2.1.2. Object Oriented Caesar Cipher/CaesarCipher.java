@@ -1,6 +1,6 @@
 public class CaesarCipher {
  
-    // FIELDS
+    // Fields
     private String alphabet;
     private String shiftedAlphabet;
     private int mainKey;

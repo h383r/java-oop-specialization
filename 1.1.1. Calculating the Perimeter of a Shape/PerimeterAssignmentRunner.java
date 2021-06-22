@@ -3,6 +3,11 @@ import java.io.File;
 
 public class PerimeterAssignmentRunner {
 
+    /**
+     * Given a shape, this method returns the perimeter of the shape.
+     * @param s Shape
+     * @return Perimeter
+     */
     public double getPerimeter (Shape s) {
 
         double totalPerim = 0.0;
@@ -20,9 +25,15 @@ public class PerimeterAssignmentRunner {
             // Update prevPt to be currPt
             prevPt = currPt;
         }
+        
         return totalPerim;
     }
 
+    /**
+     * Returns the number of points in Shape.
+     * @param s Shape
+     * @return
+     */
     public int getNumPoints (Shape s) {
 
         int numPoints = 0;
@@ -34,11 +45,21 @@ public class PerimeterAssignmentRunner {
         return numPoints;
     }
 
+    /**
+     * Returns a number of type double that is the calculated average of all the sides lengths in the Shape.
+     * @param s Shape
+     * @return
+     */
     public double getAverageLength(Shape s) {
         double averageLength = getPerimeter(s) / getNumPoints(s);
         return averageLength;
     }
 
+    /**
+     * Returns a number of type double that is the longest side in the Shape.
+     * @param s Shape
+     * @return
+     */
     public double getLargestSide(Shape s) {
 
         double largestSide = 0.0;
@@ -61,6 +82,11 @@ public class PerimeterAssignmentRunner {
         return largestSide;
     }
 
+    /**
+     * Returns a number of type double that is the largest x value over all the points in the Shape.
+     * @param s Shape
+     * @return
+     */
     public double getLargestX(Shape s) {
 
         double largestX = 0.0;
@@ -79,6 +105,10 @@ public class PerimeterAssignmentRunner {
         return largestX;
     }
 
+    /**
+     * Creates a DirectoryResource and then iterates over these files.
+     * @return
+     */
     public double getLargestPerimeterMultipleFiles() {
 
         double largestPerimeter = 0.0;
@@ -104,6 +134,10 @@ public class PerimeterAssignmentRunner {
         return largestPerimeter;
     }
 
+    /**
+     * Creates a DirectoryResource and then iterates over these files.
+     * @return
+     */
     public String getFileWithLargestPerimeter() {
 
         File largestPerimeterFile = null;
@@ -132,7 +166,11 @@ public class PerimeterAssignmentRunner {
         return largestPerimeterFile.getName();
     }
 
-    // Percentage of points from the Shape s with positive X and a negative Y. 
+    /**
+     * Percentage of points from the Shape s with positive X and a negative Y.
+     * @param s
+     * @return
+     */
     public double mysteryShape (Shape s) {
         double tmp = 0;
 
@@ -147,7 +185,13 @@ public class PerimeterAssignmentRunner {
         }
         return tmp / getNumPoints(s);    
       }
+
     
+    /**
+     * This method is used to select a data file by using the FileResource class,
+     * create a shape based on the points from that data file,
+     * and then calculate the perimeter of the shape and output its value. 
+     */
     public void testPerimeter () {
 
         FileResource fr = new FileResource();
@@ -168,6 +212,9 @@ public class PerimeterAssignmentRunner {
         System.out.println("largest X      = " + largestX);
     }
 
+    /**
+     * Test Case
+     */
     public void testPerimeterMultipleFiles() {
 
         // Call method
@@ -177,6 +224,9 @@ public class PerimeterAssignmentRunner {
         System.out.println("largest perimeter in selected files = " + largestPerimeter);
     }
 
+    /**
+     * Test Case
+     */
     public void testFileWithLargestPerimeter() {
 
         // Call method
@@ -186,7 +236,9 @@ public class PerimeterAssignmentRunner {
         System.out.println("file with largest perimeter = " + fileWithLargestPerimeter);
     }
 
-    // This method creates a triangle that you can use to test your other methods
+    /**
+     * This method creates a triangle that you can use to test your other methods
+     */
     public void triangle(){
         Shape triangle = new Shape();
         triangle.addPoint(new Point(0,0));
@@ -199,7 +251,9 @@ public class PerimeterAssignmentRunner {
         System.out.println("perimeter = "+perimeter);
     }
 
-    // This method prints names of all files in a chosen folder
+    /**
+     * This method prints names of all files in a chosen folder
+     */
     public void printFileNames() {
         DirectoryResource dr = new DirectoryResource();
         for (File f : dr.selectedFiles()) {

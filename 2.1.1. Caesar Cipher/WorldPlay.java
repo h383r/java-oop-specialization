@@ -2,6 +2,8 @@ public class WorldPlay {
     
     /**
      * Returns true if ch is a vowel
+     * @param ch
+     * @return
      */
     public boolean isVowel(char ch) {
 
@@ -15,6 +17,9 @@ public class WorldPlay {
 
     /**
      * Return a String that is the string  with all the vowels replaced by ch
+     * @param phrase
+     * @param ch
+     * @return
      */
     public String replaceVowels(String phrase, char ch) {
 
@@ -37,6 +42,9 @@ public class WorldPlay {
      * Return a String that is the string phrase but with the char replaced by:
      * "*" if it is in an odd number location
      * "+" if it is in an even number location
+     * @param phrase
+     * @param ch
+     * @return
      */
     public String emphatize(String phrase, char ch) {
         
@@ -61,15 +69,12 @@ public class WorldPlay {
     }
 
     /**
-     *  Return true if ch is either ‘a’ or ‘e’, and otherwise return false.
+     * Return true if ch is either ‘a’ or ‘e’, and otherwise return false.
+     * @param ch
+     * @return
      */
     public boolean isAorE(char ch) {
-        /*
-        if (ch == 'a' || ch == 'e') {
-            return true;
-        }
-        return false;
-        */
+
         if (ch == 'a') {
             return true;
         }
