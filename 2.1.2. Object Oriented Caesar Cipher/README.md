@@ -1,4 +1,4 @@
-## Programming Exercise: Object Oriented Caesar Cipher  
+# Programming Exercise: Object Oriented Caesar Cipher  
 
 ## Assignment 1: One Key  
 In this assignment, you will put together the CaesarCipher class from the lesson and add a decrypt method to decrypt with the same key. In addition you will create a second class, TestCaesarCipher to test examples that use the CaesarCipher class, including writing a method that will automatically decrypt an encrypted file by determining the key and then decrypting with that key.
