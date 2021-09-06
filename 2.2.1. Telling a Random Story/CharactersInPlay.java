@@ -91,8 +91,8 @@ public class CharactersInPlay {
             }
         }
 
-        System.out.println("Main Characters:");
-        charactersWithNumParts(10, 15);
+        //System.out.println("Main Characters:");
+        //charactersWithNumParts(10, 15);
     }
 
     public static void main (String[] args) {
