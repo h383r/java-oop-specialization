@@ -12,7 +12,6 @@ public class GladLibMap {
 	
 	public GladLibMap(){
 
-		
 		myMap = new HashMap<String, ArrayList<String>>();
 		wordsSeen = new ArrayList<String>();
 		usedCategory = new ArrayList<String>();
