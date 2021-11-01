@@ -21,13 +21,13 @@ public class Tester {
         log.printAll();
     }
 
-    public void test_uniqueIP() {
+    public void test_uniqueIP(String filename) {
 
         // Creates a LogAnalyzer object
         LogAnalyzer log = new LogAnalyzer();
 
         // Read from the file
-        log.readFile("data\\short-test_log");
+        log.readFile(filename);
 
         // Test the method countUniqueIPs
         int uniqueIPs = log.countUniqueIPs();
@@ -149,7 +149,7 @@ public class Tester {
         tester.test_logAnalyzer();
         
         System.out.println("------------------ Unique IPs");
-        tester.test_uniqueIP();
+        tester.test_uniqueIP("data\\short-test_log");
         
         System.out.println("------------------ Status Code Higher Than 200");
         tester.test_allHigherThanNum();
@@ -170,7 +170,6 @@ public class Tester {
         // Quiz
         tester.test_uniqueIPsInRange(300, 399, "data\\weblog1_log");
         
-        */
         System.out.println("------------------ Read File With Unique Status");
         tester.test_fileWithUniqueStatus("data\\short-test_log");
 
@@ -191,6 +190,22 @@ public class Tester {
         
         System.out.println("------------------ IPs With Most Visits On Day");
         tester.test_iPsWithMostVisitsOnDay("Sep 30", "data\\weblog3-short_log");
-
+        
+        // Quiz
+        tester.test_mostNumberVisitsByIP("data\\weblog1_log");
+        tester.test_iPsMostVisits("data\\weblog1_log");
+        tester.test_dayWithMostIPVisits("data\\weblog1_log");
+        
+        // Graded Quiz
+        tester.test_iPsWithMostVisitsOnDay("Mar 17", "data\\weblog1_log");
+        tester.test_uniqueIP("data\\weblog2_log");
+        tester.test_uniqueIPVisitsOnDay("Sep 24", "data\\weblog2_log");
+        tester.test_uniqueIPsInRange(200, 299, "data\\weblog2_log");
+        tester.test_mostNumberVisitsByIP("data\\weblog2_log");
+        tester.test_iPsMostVisits("data\\weblog2_log");
+        tester.test_dayWithMostIPVisits("data\\weblog2_log");
+        */
+        tester.test_iPsWithMostVisitsOnDay("Sep 29", "data\\weblog2_log");
+        
     }
 }
