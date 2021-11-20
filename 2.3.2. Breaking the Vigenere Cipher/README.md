@@ -45,27 +45,16 @@ Your first step in this mini-project is to write the three methods in the Vigene
         You can test your method on these examples:
 
         sliceString("abcdefghijklm", 0, 3) should return "adgjm"
-
         sliceString("abcdefghijklm", 1, 3) should return "behk"
-
         sliceString("abcdefghijklm", 2, 3) should return "cfil"
-
         sliceString("abcdefghijklm", 0, 4) should return "aeim"
-
         sliceString("abcdefghijklm", 1, 4) should return "bfj"
-
         sliceString("abcdefghijklm", 2, 4) should return "cgk"
-
         sliceString("abcdefghijklm", 3, 4) should return "dhl"
-
         sliceString("abcdefghijklm", 0, 5) should return "afk"
-
         sliceString("abcdefghijklm", 1, 5) should return "bgl"
-
         sliceString("abcdefghijklm", 2, 5) should return "chm"
-
         sliceString("abcdefghijklm", 3, 5) should return "di"
-
         sliceString("abcdefghijklm", 4, 5) should return "ej"
 
 2. Write the public method tryKeyLength, which takes three parameters—a String encrypted that represents the encrypted message, an integer klength that represents the key length, and a character mostCommon that indicates the most common character in the language of the message. This method should make use of the CaesarCracker class, as well as the sliceString method, to find the shift for each index in the key. You should fill in the key (which is an array of integers) and return it. Test this method on the text file athens_keyflute.txt, which is a scene from A Midsummer Night’s Dream encrypted with the key “flute”, and make sure you get the key {5, 11, 20, 19, 4}.
