@@ -61,19 +61,19 @@ Your first step in this mini-project is to write the three methods in the Vigene
 
 3. Write the public method breakVigenere with no parameters. This void method should put everything together, so that you can create a new VigenereBreaker in BlueJ, call this method on it, and crack the cipher used on a message. This method should perform 6 tasks (in this order):
 
-4. Create a new FileResource using its default constructor (which displays a dialog for you to select a file to decrypt).
+    - Create a new FileResource using its default constructor (which displays a dialog for you to select a file to decrypt).
 
-5. Use the asString method to read the entire contents of the file into a String.
+    - Use the asString method to read the entire contents of the file into a String.
 
-6. Use the tryKeyLength method, which you just wrote, to find the key for the message you read in. For now, you should just pass ‘e’ for mostCommon.
+    - Use the tryKeyLength method, which you just wrote, to find the key for the message you read in. For now, you should just pass ‘e’ for mostCommon.
 
-7. You should create a new VigenereCipher, passing in the key that tryKeyLength found for you.
+    - You should create a new VigenereCipher, passing in the key that tryKeyLength found for you.
 
-8. You should use the VigenereCipher’s decrypt method to decrypt the encrypted message.
+    - You should use the VigenereCipher’s decrypt method to decrypt the encrypted message.
 
-9. Finally, you should print out the decrypted message!
+    - Finally, you should print out the decrypted message!
 
-10. Test this method on the text file athens_keyflute.txt, using key length 5. The first line should be “SCENE II. Athens. QUINCE'S house.”
+    - Test this method on the text file athens_keyflute.txt, using key length 5. The first line should be “SCENE II. Athens. QUINCE'S house.”
 
 ## Assignment 2: Unknown Key Length
 

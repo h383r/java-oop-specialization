@@ -95,11 +95,16 @@ public class Tester {
         int[] key = breaker.tryKeyLength(encrypted, klength, mostCommon);
         
         for (int i = 0; i < key.length; i++) {
-            System.out.println(key[i]);
+            System.out.print(key[i] + " ");
         }
     }
 
+    public void test_breakVigenere() {
 
+        VigenereBreaker breaker = new VigenereBreaker();
+        breaker.breakVigenere();
+
+    }
 
 
 
@@ -134,8 +139,10 @@ public class Tester {
         
         System.out.println("-------------------------- Testing tryKeyLength method ");
         test.test_tryKeyLength("data/VigenereTestData/athens_keyflute.txt", 5, 'e'); 
-        
         */
+        
+        System.out.println("-------------------------- Testing breakVigenere method ");
+        test.test_breakVigenere();
 
     }
 }

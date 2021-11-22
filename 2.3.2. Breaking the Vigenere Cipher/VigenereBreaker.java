@@ -44,8 +44,26 @@ public class VigenereBreaker {
         return key;
     }
 
+    /**
+     * Cracks the cipher used on a message
+     */
     public void breakVigenere () {
-        //WRITE YOUR CODE HERE
+       
+        FileResource file = new FileResource();
+        String message = file.asString();
+
+        int[] key = tryKeyLength(message, 5, 'e');
+        VigenereCipher cipher = new VigenereCipher(key);
+        String messageDecrypted = cipher.decrypt(message);
+
+        System.out.println("Keys used: ");
+        for (int i = 0; i < key.length; i++) {
+            System.out.print(key[i] + " ");
+        }
+
+        System.out.println("Decrypted message:");
+        System.out.println(messageDecrypted);
+        
     }
     
 }
