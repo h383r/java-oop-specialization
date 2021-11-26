@@ -66,4 +66,46 @@ public class VigenereBreaker {
         
     }
     
+    /**
+     * Read each line in file, convert that line to lower case and put that line
+     * into a HashSet representing the words in a dictionary.
+     * @param file dictionary
+     * @return
+     */
+    public HashSet<String> readDictionary (FileResource file) {
+
+        HashSet<String> words = new HashSet<String>();
+
+        for (String word : file.lines()) {
+            word = word.toLowerCase();
+            words.add(word);
+        }
+        return words;
+    }
+
+    /**
+     * Split the message into words, iterate over those words, and see how many of 
+     * them are “real words”—that is, how many appear in the dictionary.
+     * Returns the integer count of how many valid words it found.
+     * @param message from file
+     * @param dictionary from readDictionary method
+     * @return
+     */
+    public int countWords (String message, HashSet<String> dictionary) {
+
+        int countWords = 0;
+        String[] words = message.split("\\W+"); // Returns a String array
+
+        for (String word : words) {
+            if (dictionary.contains(word.toLowerCase())) {
+                countWords = countWords + 1;
+            }
+        }
+        return countWords;
+    }
+
+    
+
+
+
 }
