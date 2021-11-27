@@ -89,19 +89,19 @@ Specifically, you should do the following:
 
 4. Finally, you need to modify your breakVigenere method to make use of your new code. The steps below describe what your breakVigenere method should do. They are similar to the steps from the previous portion of this project but have been updated: new items are in italics, [and old items that you should no longer do are in square brackets.]
 
-5. Create a new FileResource using its default constructor (which displays a dialog for you to select a file to decrypt).
+    - Create a new FileResource using its default constructor (which displays a dialog for you to select a file to decrypt).
 
-6. Use that FileResource’s asString method to read the entire contents of the file into a String.
+    - Use that FileResource’s asString method to read the entire contents of the file into a String.
 
-7. You should make a new FileResource to read from the English dictionary file that we have provided. [Use the tryKeyLength method that you just wrote to find the key for the message you read in. For now, you should just pass ‘e’ for mostCommon.]
+    - You should make a new FileResource to read from the English dictionary file that we have provided. [Use the tryKeyLength method that you just wrote to find the key for the message you read in. For now, you should just pass ‘e’ for mostCommon.]
 
-8. You should use your readDictionary method to read the contents of that file into a HashSet of Strings. [You should create a new VigenereCipher, passing in the key that tryKeyLength found for you.]
+    - You should use your readDictionary method to read the contents of that file into a HashSet of Strings. [You should create a new VigenereCipher, passing in the key that tryKeyLength found for you.]
 
-9. You should use the breakForLanguage method that you just wrote to decrypt the encrypted message. [You should use a VigenereCipher object to decrypt the encrypted message.]
+    - You should use the breakForLanguage method that you just wrote to decrypt the encrypted message. [You should use a VigenereCipher object to decrypt the encrypted message.]
 
-10. Finally, you should print out the decrypted message!
+    - Finally, you should print out the decrypted message!
 
-11. Test this method on the text file athens_keyflute.txt. The first line should be “SCENE II. Athens. QUINCE'S house”, and the key is “flute”, or {5, 11, 20, 19, 4}. This file contains 376 valid words out of 386 (total word count ignores whitespace). 
+    - Test this method on the text file athens_keyflute.txt. The first line should be “SCENE II. Athens. QUINCE'S house”, and the key is “flute”, or {5, 11, 20, 19, 4}. This file contains 376 valid words out of 386 (total word count ignores whitespace). 
 
 ## Assignment 3: Unknown Language, Unknown Key Length
 Finally, it is time to expand your program so that it can crack messages in other languages. To accomplish this, you need to write two new methods and modify two methods you have already written.

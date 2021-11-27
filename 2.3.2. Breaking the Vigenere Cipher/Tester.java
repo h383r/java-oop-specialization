@@ -1,4 +1,5 @@
 import edu.duke.*;
+import java.util.*;
 
 public class Tester {
 
@@ -72,14 +73,6 @@ public class Tester {
 
     }
 
-    public void test_VigenereBreaker(String filename) {
-
-
-
-
-
-    }
-
     public void test_sliceString(String message, int whichSlice, int totalSlices) {
         VigenereBreaker breaker = new VigenereBreaker();
         String output = breaker.sliceString(message, whichSlice, totalSlices);
@@ -106,6 +99,13 @@ public class Tester {
 
     }
 
+    public void test_mostCommonCharIn() {
+        VigenereBreaker breaker = new VigenereBreaker();
+        FileResource dictionaryFile = new FileResource("data/dictionaries/English");
+        HashSet<String> dictionary = breaker.readDictionary(dictionaryFile);
+        char mostCommonChar = breaker.mostCommonCharIn(dictionary);
+        System.out.println("Most Common Character in Dictionary is: " + mostCommonChar);
+    }
 
 
     public static void main (String[] args) {
@@ -139,10 +139,13 @@ public class Tester {
         
         System.out.println("-------------------------- Testing tryKeyLength method ");
         test.test_tryKeyLength("data/VigenereTestData/athens_keyflute.txt", 5, 'e'); 
-        */
         
+        System.out.println("-------------------------- Testing mostCommonCharIn method ");
+        test.test_mostCommonCharIn();
+        
+        */
         System.out.println("-------------------------- Testing breakVigenere method ");
         test.test_breakVigenere();
-
+        
     }
 }
