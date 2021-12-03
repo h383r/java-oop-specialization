@@ -1,4 +1,3 @@
-import java.io.File;
 import java.util.*;
 import edu.duke.*;
 
@@ -48,25 +47,25 @@ public class VigenereBreaker {
     /**
      * Cracks the cipher used on a message
      */
-    public void breakVigenere () {
+    public void breakVigenere (String filename) {
        
         /*
-        FileResource file = new FileResource();
+        FileResource file = new FileResource(filename);
         String message = file.asString();
-
-        int[] key = tryKeyLength(message, 5, 'e');
+        
+        int[] key = tryKeyLength(message, 38, 'e'); //5
         VigenereCipher cipher = new VigenereCipher(key);
         String messageDecrypted = cipher.decrypt(message);
-
+        
         System.out.println("Keys used: ");
         for (int i = 0; i < key.length; i++) {
             System.out.print(key[i] + " ");
         }
-
+        
         System.out.println("Decrypted message:");
         System.out.println(messageDecrypted);
         */
-
+        
         /*
         //Test this method on the text file athens_keyflute.txt.
         //The first line should be “SCENE II. Athens. QUINCE'S house”
@@ -93,7 +92,7 @@ public class VigenereBreaker {
         languages[7] = "Spanish";
         
         for (int i = 0; i < languages.length; i++) {
-
+            
             String language = languages[i];
             FileResource file = new FileResource("data/dictionaries/" + language);
             
@@ -102,11 +101,12 @@ public class VigenereBreaker {
             HashSet<String> dictionary = readDictionary(file);
             dictionaries.put(language, dictionary);
         }
-
-        FileResource messageFile = new FileResource("data/VigenereTestData/athens_keyflute.txt");
+        
+        FileResource messageFile = new FileResource(filename);
         String messageEncrypted = messageFile.asString();
         
         breakForAllLangs(messageEncrypted, dictionaries);
+
     }
     
     /**
@@ -116,16 +116,16 @@ public class VigenereBreaker {
      * @return
      */
     public HashSet<String> readDictionary (FileResource file) {
-
+        
         HashSet<String> words = new HashSet<String>();
-
+        
         for (String word : file.lines()) {
             word = word.toLowerCase();
             words.add(word);
         }
         return words;
     }
-
+    
     /**
      * Split the message into words, iterate over those words, and see how many of 
      * them are “real words”—that is, how many appear in the dictionary.
@@ -162,30 +162,37 @@ public class VigenereBreaker {
         // Try all key lengths from 1 to 100 to obtain the best decryption for each key length in that range.
         for (int i = 1; i < 100; i++) {
             
-            /*
-            Note that there is nothing special about 100; we will just give you messages with 
-            key lengths in the range 1–100. If you did not have this information, 
-            you could iterate all the way to encrypted.length()
-            */
-
+            
+            //Note that there is nothing special about 100; we will just give you messages with 
+            //key lengths in the range 1–100. If you did not have this information, 
+            //you could iterate all the way to encrypted.length()
+            
             char commonChar = mostCommonCharIn(dictionary);
             
             int[] key = tryKeyLength(encrypted, i, commonChar);
             VigenereCipher cipher = new VigenereCipher(key);
-
+            
             // For each key length, decrypt the message
             String currentDecrypted = cipher.decrypt(encrypted);
             
             // Count how many of the “words” in it are real words in English.
             int countWords = countWords(currentDecrypted, dictionary);
-        
+            
             if (countWords > totalRealWords) {
                 totalRealWords = countWords;
                 keyLength = i;
                 messageDecrypted = currentDecrypted;
             }
         }
-            
+
+        /*
+        char commonChar = mostCommonCharIn(dictionary);
+        int[] key = tryKeyLength(encrypted, 38, commonChar);
+        VigenereCipher cipher = new VigenereCipher(key);
+        String currentDecrypted = cipher.decrypt(encrypted);
+        totalRealWords = countWords(currentDecrypted, dictionary);
+        */
+
         System.out.println("");
         System.out.println("Analyzing Language: " + language);
         System.out.println("Real words: " + totalRealWords);
@@ -257,9 +264,16 @@ public class VigenereBreaker {
                 languageUsed = language;
             }
         }
+        
         System.out.println("Language used to decrypt message: " + languageUsed);
         System.out.println("");
-        System.out.println(decryptedMessage);
+        
+        
+        System.out.println("Message:");
+        System.out.println("");
+        //System.out.println(decryptedMessage);
+        String shortMessage = decryptedMessage.substring(0, 100);
+        System.out.println(shortMessage);
     }
 
 

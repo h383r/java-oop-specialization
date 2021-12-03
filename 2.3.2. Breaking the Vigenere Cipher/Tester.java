@@ -92,10 +92,10 @@ public class Tester {
         }
     }
 
-    public void test_breakVigenere() {
+    public void test_breakVigenere(String filename) {
 
         VigenereBreaker breaker = new VigenereBreaker();
-        breaker.breakVigenere();
+        breaker.breakVigenere(filename);
 
     }
 
@@ -106,7 +106,20 @@ public class Tester {
         char mostCommonChar = breaker.mostCommonCharIn(dictionary);
         System.out.println("Most Common Character in Dictionary is: " + mostCommonChar);
     }
+    
+    public void test_countWords(String filename) {
+        
+        VigenereBreaker breaker = new VigenereBreaker();
+        
+        FileResource file = new FileResource(filename);
+        String message = file.asString();
 
+        FileResource dictionaryFile = new FileResource("data/dictionaries/English");
+
+        HashSet<String> dictionary = breaker.readDictionary(dictionaryFile);
+        System.out.println(breaker.countWords(message, dictionary));
+
+    }
 
     public static void main (String[] args) {
 
@@ -143,9 +156,16 @@ public class Tester {
         System.out.println("-------------------------- Testing mostCommonCharIn method ");
         test.test_mostCommonCharIn();
         
-        */
         System.out.println("-------------------------- Testing breakVigenere method ");
-        test.test_breakVigenere();
+        test.test_breakVigenere("data/VigenereTestData/athens_keyflute.txt");
         
+        System.out.println("-------------------------- Practice Quiz ");
+        test.test_tryKeyLength("data/messages/secretmessage1.txt", 4, 'e'); //Key 3 20 10 4 = duke
+        test.test_breakVigenere("data/messages/secretmessage1.txt");
+        */
+        test.test_breakVigenere("data/messages/secretmessage3.txt");
+        
+
+
     }
 }

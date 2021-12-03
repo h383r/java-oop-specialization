@@ -118,3 +118,14 @@ Specifically, you should do the following:
 
 5. Test your program on the file athens_keyflute.txt. Notice that the correct key “flute” {5, 11, 20, 19, 4} is detected for English, French, Danish, German, and Dutch, due to ‘e’ being the most common character and the languages having cognates, but English has the greatest number of valid words for its decryption.
 
+## Extend Your Program
+
+Here are some optional ideas to extend your program even further:
+
+- Test edge cases. 'Edge cases' refer to special situations where a program might break down. For example, consider text files or languages where the most common letter is unreliable or nearly tied with another letter. For example, the original message encrypted in the text file aida_keyverdi.txt is in Italian, which has letter frequencies E	11.49%, A	10.85%, I	10.18% (http://www.sttmedia.com/characterfrequency-italian ). You could also experiment with determining the maximum allowable key length.
+
+- Use a different set of data. Try different length texts and different languages. This can also help you identify edge cases.
+
+- Explore different statistics. This program assumes one character is the most frequent. Are there other ways to determine the key to a cipher? One possibility to address certain edge cases, such as breaking decryption of Italian-language texts could be to find multiple possible keys of each length and try all of them (tryKeyLength might return a 2D array—if you find every key length n where there are two possibilities for the most frequent letter, there would be 2^n possible keys). 
+
+- Adapt your program to a new problem. This project focused on the Vigenère cipher. What other ciphers could you write algorithms for? How is cryptography different from steganography?
