@@ -4,6 +4,7 @@ import processing.core.PApplet;
 import de.fhpotsdam.unfolding.UnfoldingMap;
 import de.fhpotsdam.unfolding.geo.Location;
 import de.fhpotsdam.unfolding.providers.AbstractMapProvider;
+import de.fhpotsdam.unfolding.providers.EsriProvider;
 import de.fhpotsdam.unfolding.providers.Google;
 import de.fhpotsdam.unfolding.providers.MBTilesMapProvider;
 import de.fhpotsdam.unfolding.utils.MapUtils;
@@ -36,17 +37,21 @@ public class HelloWorld extends PApplet
 	UnfoldingMap map2;
 
 	public void setup() {
-		size(800, 600, P2D);  // Set up the Applet window to be 800x600
-		                      // The OPENGL argument indicates to use the 
-		                      // Processing library's 2D drawing
-		                      // You'll learn more about processing in Module 3
+		
+		// Set up the Applet window to be 800x600
+		// The OPENGL argument indicates to use the 
+		// Processing library's 2D drawing
+		// You'll learn more about processing in Module 3
+		size(850, 600, P2D);  
 
 		// This sets the background color for the Applet.  
 		// Play around with these numbers and see what happens!
 		this.background(200, 200, 200);
 		
 		// Select a map provider
-		AbstractMapProvider provider = new Google.GoogleTerrainProvider();
+		//AbstractMapProvider provider = new Google.GoogleTerrainProvider();
+		AbstractMapProvider provider = new EsriProvider.NatGeoWorldMap();
+		
 		// Set a zoom level
 		int zoomLevel = 10;
 		
@@ -76,6 +81,10 @@ public class HelloWorld extends PApplet
 		
 		// TODO: Add code here that creates map2 
 		// Then you'll modify draw() below
+		
+		map2 = new UnfoldingMap(this, 450, 50, 350, 500, provider);
+		map2.zoomAndPanTo(zoomLevel, new Location(-33.0,-68.4));
+		MapUtils.createDefaultEventDispatcher(this, map2);
 
 	}
 
@@ -84,6 +93,7 @@ public class HelloWorld extends PApplet
 		// So far we only draw map1...
 		// TODO: Add code so that both maps are displayed
 		map1.draw();
+		map2.draw();
 	}
 
 	
