@@ -14,6 +14,8 @@ import de.fhpotsdam.unfolding.UnfoldingMap;
 import de.fhpotsdam.unfolding.marker.Marker;
 import de.fhpotsdam.unfolding.data.PointFeature;
 import de.fhpotsdam.unfolding.marker.SimplePointMarker;
+import de.fhpotsdam.unfolding.providers.AbstractMapProvider;
+import de.fhpotsdam.unfolding.providers.EsriProvider;
 import de.fhpotsdam.unfolding.providers.Google;
 import de.fhpotsdam.unfolding.providers.MBTilesMapProvider;
 import de.fhpotsdam.unfolding.utils.MapUtils;
@@ -23,9 +25,7 @@ import parsing.ParseFeed;
 
 /** EarthquakeCityMap
  * An application with an interactive map displaying earthquake data.
- * Author: UC San Diego Intermediate Software Development MOOC team
- * @author Your name here
- * Date: July 17, 2015
+ * 20hs
  * */
 public class EarthquakeCityMap extends PApplet {
 
@@ -39,26 +39,31 @@ public class EarthquakeCityMap extends PApplet {
 	public static final float THRESHOLD_MODERATE = 5;
 	// Less than this threshold is a minor earthquake
 	public static final float THRESHOLD_LIGHT = 4;
-
+	
 	/** This is where to find the local tiles, for working without an Internet connection */
 	public static String mbTilesString = "blankLight-1-3.mbtiles";
 	
 	// The map
 	private UnfoldingMap map;
 	
-	//feed with magnitude 2.5+ Earthquakes
-	private String earthquakesURL = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_week.atom";
-
+	// feed with magnitude 2.5+ Earthquakes
+	// https://earthquake.usgs.gov/earthquakes/feed/v1.0/atom.php
+	
+	// private String earthquakesURL = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_week.atom";
+	private String earthquakesURL = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_day.atom";
 	
 	public void setup() {
 		size(950, 600, OPENGL);
-
+		
+		AbstractMapProvider providerEsri = new EsriProvider.NatGeoWorldMap();
+		AbstractMapProvider providerGoogle = new Google.GoogleMapProvider();
+		
 		if (offline) {
 		    map = new UnfoldingMap(this, 200, 50, 700, 500, new MBTilesMapProvider(mbTilesString));
 		    earthquakesURL = "2.5_week.atom"; 	// Same feed, saved Aug 7, 2015, for working offline
 		}
 		else {
-			map = new UnfoldingMap(this, 200, 50, 700, 500, new Google.GoogleMapProvider());
+			map = new UnfoldingMap(this, 200, 50, 700, 500, providerEsri);
 			// IF YOU WANT TO TEST WITH A LOCAL FILE, uncomment the next line
 			//earthquakesURL = "2.5_week.atom";
 		}
@@ -73,11 +78,19 @@ public class EarthquakeCityMap extends PApplet {
 	    //PointFeatures have a getLocation method
 	    List<PointFeature> earthquakes = ParseFeed.parseEarthquake(this, earthquakesURL);
 	    
-	    //TODO (Step 3): Add a loop here that calls createMarker (see below) 
-	    // to create a new SimplePointMarker for each PointFeature in 
-	    // earthquakes.  Then add each new SimplePointMarker to the 
-	    // List markers (so that it will be added to the map in the line below)
-	    
+	    // TODO (Step 3):
+	    // Add a loop here that calls createMarker to create a new
+	    // SimplePointMarker for each PointFeature in earthquakes.
+	    for(PointFeature earthquake : earthquakes) {
+	    	
+	    	SimplePointMarker marker = createMarker(earthquake);
+	    	
+	    	// Then add each new SimplePointMarker to the List markers 
+	    	// (so that it will be added to the map in the line below)
+	    	markers.add(marker);
+	    	
+	    	
+	    }
 	    
 	    // Add the markers to the map so that they are displayed
 	    map.addMarkers(markers);
@@ -103,11 +116,13 @@ public class EarthquakeCityMap extends PApplet {
 		SimplePointMarker marker = new SimplePointMarker(feature.getLocation());
 		
 		Object magObj = feature.getProperty("magnitude");
-		float mag = Float.parseFloat(magObj.toString());
+		float magnitude = Float.parseFloat(magObj.toString());
 		
 		// Here is an example of how to use Processing's color method to generate 
 	    // an int that represents the color yellow.  
+		int blue = color(0, 0, 255);
 	    int yellow = color(255, 255, 0);
+	    int red = color(255, 0, 0);
 		
 		// TODO (Step 4): Add code below to style the marker's size and color 
 	    // according to the magnitude of the earthquake.  
@@ -117,7 +132,28 @@ public class EarthquakeCityMap extends PApplet {
 	    // the magnitude to these variables (and change their value in the code 
 	    // above if you want to change what you mean by "moderate" and "light")
 	    
-	    
+	    // earthquake classification http://www.geo.mtu.edu/UPSeis/magnitude.html
+	    	    	    
+	    // Minor earthquakes (less than magnitude 4.0)
+	    if (magnitude < THRESHOLD_LIGHT) {
+	    	// Will have blue markers and be small.
+	    	marker.setRadius(10);
+	    	marker.setColor(blue);	
+	    }
+	    // Light earthquakes (between 4.0-4.9) 
+	    else if (magnitude >= THRESHOLD_LIGHT && magnitude < THRESHOLD_MODERATE) {
+	    	// Will have yellow markers and be medium size.
+	    	marker.setRadius(15);	
+	    	marker.setColor(yellow);
+	    	
+	    }
+	    // Moderate and higher earthquakes (5.0 and over) 
+	    else if (magnitude >= THRESHOLD_MODERATE) {
+	    	// Will have red markers and be largest.
+	    	marker.setRadius(20);	
+	    	marker.setColor(red);	    	
+	    }
+	    	    
 	    // Finally return the marker
 	    return marker;
 	}
@@ -128,12 +164,40 @@ public class EarthquakeCityMap extends PApplet {
 	    addKey();
 	}
 
-
 	// helper method to draw key in GUI
 	// TODO: Implement this method to draw the key
 	private void addKey() 
 	{	
 		// Remember you can use Processing's graphics methods here
+		int white = color(255, 255, 255);
+		int black = color(0, 0, 0);
+		int blue = color(0, 0, 255);
+	    int yellow = color(255, 255, 0);
+	    int red = color(255, 0, 0);
+	    
+	    // Background and Header
+		fill (white);
+		rect(25, 50, 150, 210);
+		fill(black);
+		text("Earthquake Magnitude:", 40, 75);
+		
+		// Minor earthquakes (less than magnitude 4.0)
+		fill(blue);
+		ellipse(40, 100, 10, 10);
+		fill(black);
+		text(" < 4.0", 60, 105);
+		
+		// Light earthquakes (between 4.0-4.9)
+		fill(yellow);
+		ellipse(40, 150, 15, 15);
+		fill(black);
+		text(" > 5.0", 60, 155);
+		
+		// Moderate and higher earthquakes (5.0 and over) 
+		fill(red);
+		ellipse(40, 200, 20, 20);
+		fill(black);
+		text(" > 5.0", 60, 205);	
 	
 	}
 }
