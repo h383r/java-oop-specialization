@@ -11,6 +11,8 @@ import de.fhpotsdam.unfolding.geo.Location;
 import de.fhpotsdam.unfolding.marker.AbstractShapeMarker;
 import de.fhpotsdam.unfolding.marker.Marker;
 import de.fhpotsdam.unfolding.marker.MultiMarker;
+import de.fhpotsdam.unfolding.providers.AbstractMapProvider;
+import de.fhpotsdam.unfolding.providers.EsriProvider;
 import de.fhpotsdam.unfolding.providers.Google;
 import de.fhpotsdam.unfolding.providers.MBTilesMapProvider;
 import de.fhpotsdam.unfolding.utils.MapUtils;
@@ -19,9 +21,6 @@ import processing.core.PApplet;
 
 /** EarthquakeCityMap
  * An application with an interactive map displaying earthquake data.
- * Author: UC San Diego Intermediate Software Development MOOC team
- * @author Your name here
- * Date: July 17, 2015
  * */
 public class EarthquakeCityMap extends PApplet {
 	
@@ -39,11 +38,10 @@ public class EarthquakeCityMap extends PApplet {
 	
 	/** This is where to find the local tiles, for working without an Internet connection */
 	public static String mbTilesString = "blankLight-1-3.mbtiles";
-	
-	
 
 	//feed with magnitude 2.5+ Earthquakes
 	private String earthquakesURL = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_week.atom";
+	//private String earthquakesURL = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_day.atom";
 	
 	// The files containing city names and info and country names and info
 	private String cityFile = "city-data.json";
@@ -54,6 +52,7 @@ public class EarthquakeCityMap extends PApplet {
 	
 	// Markers for each city
 	private List<Marker> cityMarkers;
+	
 	// Markers for each earthquake
 	private List<Marker> quakeMarkers;
 
@@ -63,12 +62,16 @@ public class EarthquakeCityMap extends PApplet {
 	public void setup() {		
 		// (1) Initializing canvas and map tiles
 		size(900, 700, OPENGL);
+		
+		AbstractMapProvider providerEsri = new EsriProvider.NatGeoWorldMap();
+		AbstractMapProvider providerGoogle = new Google.GoogleMapProvider();
+		
 		if (offline) {
 		    map = new UnfoldingMap(this, 200, 50, 650, 600, new MBTilesMapProvider(mbTilesString));
 		    earthquakesURL = "2.5_week.atom";  // The same feed, but saved August 7, 2015
 		}
 		else {
-			map = new UnfoldingMap(this, 200, 50, 650, 600, new Google.GoogleMapProvider());
+			map = new UnfoldingMap(this, 200, 50, 650, 600, providerEsri);
 			// IF YOU WANT TO TEST WITH A LOCAL FILE, uncomment the next line
 		    //earthquakesURL = "2.5_week.atom";
 		}
@@ -80,7 +83,7 @@ public class EarthquakeCityMap extends PApplet {
 		//earthquakesURL = "test2.atom";
 		
 		// WHEN TAKING THIS QUIZ: Uncomment the next line
-		//earthquakesURL = "quiz1.atom";
+		earthquakesURL = "quiz1.atom";
 		
 		
 		// (2) Reading in earthquake data and geometric properties
@@ -132,26 +135,69 @@ public class EarthquakeCityMap extends PApplet {
 	// helper method to draw key in GUI
 	// TODO: Update this method as appropriate
 	private void addKey() {	
+		
 		// Remember you can use Processing's graphics methods here
 		fill(255, 250, 240);
 		rect(25, 50, 150, 250);
 		
-		fill(0);
 		textAlign(LEFT, CENTER);
 		textSize(12);
-		text("Earthquake Key", 50, 75);
 		
-		fill(color(255, 0, 0));
-		ellipse(50, 125, 15, 15);
-		fill(color(255, 255, 0));
-		ellipse(50, 175, 10, 10);
-		fill(color(0, 0, 255));
-		ellipse(50, 225, 5, 5);
-		
+		// Key Title
 		fill(0, 0, 0);
-		text("5.0+ Magnitude", 75, 125);
-		text("4.0+ Magnitude", 75, 175);
-		text("Below 4.0", 75, 225);
+		text("Earthquake Key", 50, (75 + 25 * 0));
+		// 25 50 ############################################################
+		// Line 1
+		fill(0, 0, 0);
+		text("City Marker", 75, (75 + 25 * 1));
+		fill(150, 30, 30 );
+		triangle(60, 100 - CityMarker.TRI_SIZE, 60 - CityMarker.TRI_SIZE, 100 + CityMarker.TRI_SIZE, 60 + CityMarker.TRI_SIZE, 100 + CityMarker.TRI_SIZE);
+
+		// Line 2
+		fill(0, 0, 0);
+		text("Land Quake", 75, (75 + 25 * 2));
+		fill(255, 255, 255);
+		ellipse(60, (75 + 25 * 2), 10, 10);
+		
+		// Line 3
+		fill(0, 0, 0);
+		text("Ocean Quake", 75, (75 + 25 * 3));
+		fill(255, 255, 255);
+		rect(55, (75 + 25 * 3) - 5, 10, 10);
+		
+		// Line 4
+		fill(0, 0, 0);
+		text("Size - Magnitude", 50, (75 + 25 * 4));
+		
+		// Line 5
+		fill(0, 0, 0);
+		text("Shallow", 75, (75 + 25 * 5));
+		fill(255, 255, 0);
+		ellipse(60, (75 + 25 * 5), 12, 12);
+		
+		// Line 6
+		fill(0, 0, 0);
+		text("Intermediate", 75, (75 + 25 * 6));
+		fill(0, 0, 255);
+		ellipse(60, (75 + 25 * 6), 12, 12);
+		
+		// Line 7
+		fill(0, 0, 0);
+		text("Deep", 75, (75 + 25 * 7));
+		fill(255, 0, 0);
+		ellipse(60, (75 + 25 * 7), 12, 12);
+		
+		// Line 8
+		fill(0);
+		text("Past hour", 75, (75 + 25 * 8));
+		fill(255, 255, 255);
+		int pastHourElipseX = 60;
+		int pastHourElipseY = 75 + 25 * 8;
+		ellipse(pastHourElipseX,pastHourElipseY , 12, 12);
+		strokeWeight(1);
+		line(pastHourElipseX - 4, pastHourElipseY - 4, pastHourElipseX + 4, pastHourElipseY + 4);
+		line(pastHourElipseX - 4, pastHourElipseY + 4, pastHourElipseX + 4, pastHourElipseY - 4);
+				
 	}
 
 	
@@ -162,17 +208,18 @@ public class EarthquakeCityMap extends PApplet {
 	// set this "country" property already.  Otherwise it returns false.
 	private boolean isLand(PointFeature earthquake) {
 		
-		
-		// Loop over all the country markers.  
-		// For each, check if the earthquake PointFeature is in the 
-		// country in m.  Notice that isInCountry takes a PointFeature
-		// and a Marker as input.  
-		// If isInCountry ever returns true, isLand should return true.
+		// Loop over all the country markers.
 		for (Marker m : countryMarkers) {
-			// TODO: Finish this method using the helper method isInCountry
-			
-		}
 		
+			// For each, check if the earthquake PointFeature is in the 
+			// country in m.  Notice that isInCountry takes a PointFeature
+			// and a Marker as input.  
+			if (isInCountry(earthquake, m)) {
+				
+				// If isInCountry ever returns true, isLand should return true.
+				return true;
+			}
+		}
 		
 		// not inside any country
 		return false;
@@ -184,19 +231,44 @@ public class EarthquakeCityMap extends PApplet {
 	 * ...
 	 * OCEAN QUAKES: numOceanQuakes
 	 * */
-	private void printQuakes() 
-	{
-		// TODO: Implement this method
+	private void printQuakes() {
+		
+		int waterQuakes = quakeMarkers.size();
+		
 		// One (inefficient but correct) approach is to:
-		//   Loop over all of the countries, e.g. using 
-		//        for (Marker cm : countryMarkers) { ... }
-		//        
-		//      Inside the loop, first initialize a quake counter.
-		//      Then loop through all of the earthquake
-		//      markers and check to see whether (1) that marker is on land
-		//     	and (2) if it is on land, that its country property matches 
-		//      the name property of the country marker.   If so, increment
-		//      the country's counter.
+		// Loop over all of the countries
+		for (Marker countryMarker : countryMarkers) {
+			
+			// Inside the loop, first initialize a quake counter.
+			int quakeCounter = 0;
+			
+			// Then loop through all of the earthquake markers
+			for (Marker earthquake : quakeMarkers) {
+				
+				EarthquakeMarker earthquakeMarker = (EarthquakeMarker)earthquake;
+				
+				// Check to see whether (1) that marker is on land
+				if (earthquakeMarker.isOnLand()) {
+					
+					// and (2) if it is on land, that its country property matches 
+					// the name property of the country marker.   
+					if (earthquake.getProperty("country") == countryMarker.getProperty("name")) {
+												
+						// If so, increment the country's counter.
+						quakeCounter = quakeCounter + 1;
+					}	
+				}
+			}
+			
+			// Prints results
+			if (quakeCounter > 0) {
+				waterQuakes = waterQuakes - quakeCounter;
+				
+				String countryName = countryMarker.getStringProperty("name");
+				System.out.println(countryName + ": " + quakeCounter);
+			}
+		}
+		System.out.println("OCEAN QUAKES: " + waterQuakes);
 		
 		// Here is some code you will find useful:
 		// 
@@ -213,8 +285,6 @@ public class EarthquakeCityMap extends PApplet {
 		
 		
 	}
-	
-	
 	
 	// helper method to test whether a given earthquake is in a given country
 	// This will also add the country property to the properties of the earthquake 

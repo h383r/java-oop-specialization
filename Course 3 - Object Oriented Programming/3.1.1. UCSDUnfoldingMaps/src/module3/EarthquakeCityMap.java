@@ -25,7 +25,6 @@ import parsing.ParseFeed;
 
 /** EarthquakeCityMap
  * An application with an interactive map displaying earthquake data.
- * 20hs
  * */
 public class EarthquakeCityMap extends PApplet {
 
