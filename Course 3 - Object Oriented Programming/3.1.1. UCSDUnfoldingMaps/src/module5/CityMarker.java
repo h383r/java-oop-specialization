@@ -9,14 +9,9 @@ import processing.core.PGraphics;
 
 /** Implements a visual marker for cities on an earthquake map
  * 
- * @author UC San Diego Intermediate Software Development MOOC team
- * @author Your name here
- *
  */
-// TODO: Change SimplePointMarker to CommonMarker as the very first thing you do 
-// in module 5 (i.e. CityMarker extends CommonMarker).  It will cause an error.
-// That's what's expected.
-public class CityMarker extends SimplePointMarker {
+
+public class CityMarker extends CommonMarker {
 	
 	public static int TRI_SIZE = 5;  // The size of the triangle marker
 	
@@ -51,7 +46,14 @@ public class CityMarker extends SimplePointMarker {
 	public void showTitle(PGraphics pg, float x, float y)
 	{
 		
-		// TODO: Implement this method
+		String city = getCity();
+		String country = getCountry();
+		String population = String.valueOf(getPopulation());
+		String label = city + " " + country + " " + population;
+		
+		pg.textSize(12);
+		pg.fill(50, 50, 250);
+		pg.text(label, x + 5, y);
 	}
 	
 	

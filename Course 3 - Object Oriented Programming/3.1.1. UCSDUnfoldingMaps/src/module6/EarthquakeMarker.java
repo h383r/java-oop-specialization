@@ -5,12 +5,8 @@ import processing.core.PConstants;
 import processing.core.PGraphics;
 
 /** Implements a visual marker for earthquakes on an earthquake map
- * 
- * @author UC San Diego Intermediate Software Development MOOC team
- *
  */
-// TODO: Implement the comparable interface
-public abstract class EarthquakeMarker extends CommonMarker
+public abstract class EarthquakeMarker extends CommonMarker implements Comparable<EarthquakeMarker>
 {
 	
 	// Did the earthquake occur on land?  This will be set by the subclasses.
@@ -35,14 +31,10 @@ public abstract class EarthquakeMarker extends CommonMarker
 	public static final float THRESHOLD_INTERMEDIATE = 70;
 	/** Greater than or equal to this threshold is a deep depth */
 	public static final float THRESHOLD_DEEP = 300;
-
-	// ADD constants for colors
-
 	
 	// abstract method implemented in derived classes
 	public abstract void drawEarthquake(PGraphics pg, float x, float y);
 		
-	
 	// constructor
 	public EarthquakeMarker (PointFeature feature) 
 	{
@@ -55,8 +47,15 @@ public abstract class EarthquakeMarker extends CommonMarker
 		this.radius = 1.75f*getMagnitude();
 	}
 	
-	// TODO: Add the method:
-	// public int compareTo(EarthquakeMarker marker)
+	public int compareTo(EarthquakeMarker marker) {
+		
+	    if (this.getMagnitude() < marker.getMagnitude()) 
+	        return 1;
+	    else if (this.getMagnitude() > marker.getMagnitude())
+	        return -1;
+	    else
+	        return 0;
+	}
 	
 	
 	// calls abstract method drawEarthquake and then checks age and draws X if needed
@@ -76,7 +75,7 @@ public abstract class EarthquakeMarker extends CommonMarker
 		if ("Past Hour".equals(age) || "Past Day".equals(age)) {
 			
 			pg.strokeWeight(2);
-			int buffer = 2;
+			int buffer = 0;
 			pg.line(x-(radius+buffer), 
 					y-(radius+buffer), 
 					x+radius+buffer, 
@@ -134,16 +133,15 @@ public abstract class EarthquakeMarker extends CommonMarker
 		float depth = getDepth();
 		
 		if (depth < THRESHOLD_INTERMEDIATE) {
-			pg.fill(255, 255, 0);
+			pg.fill(234, 179, 8); // Shallow
 		}
 		else if (depth < THRESHOLD_DEEP) {
-			pg.fill(0, 0, 255);
+			pg.fill(249, 115, 22); // Intermediate
 		}
 		else {
-			pg.fill(255, 0, 0);
+			pg.fill(220, 38, 38); // Deep
 		}
 	}
-	
 	
 	/** toString
 	 * Returns an earthquake marker's string representation
@@ -178,8 +176,6 @@ public abstract class EarthquakeMarker extends CommonMarker
 	{
 		return isOnLand;
 	}
-	
-
 	
 	
 }

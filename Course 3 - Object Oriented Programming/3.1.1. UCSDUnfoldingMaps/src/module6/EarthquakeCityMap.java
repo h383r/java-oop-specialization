@@ -2,6 +2,7 @@ package module6;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import de.fhpotsdam.unfolding.UnfoldingMap;
@@ -12,6 +13,8 @@ import de.fhpotsdam.unfolding.geo.Location;
 import de.fhpotsdam.unfolding.marker.AbstractShapeMarker;
 import de.fhpotsdam.unfolding.marker.Marker;
 import de.fhpotsdam.unfolding.marker.MultiMarker;
+import de.fhpotsdam.unfolding.providers.AbstractMapProvider;
+import de.fhpotsdam.unfolding.providers.EsriProvider;
 import de.fhpotsdam.unfolding.providers.Google;
 import de.fhpotsdam.unfolding.providers.MBTilesMapProvider;
 import de.fhpotsdam.unfolding.utils.MapUtils;
@@ -42,7 +45,6 @@ public class EarthquakeCityMap extends PApplet {
 	public static String mbTilesString = "blankLight-1-3.mbtiles";
 	
 	
-
 	//feed with magnitude 2.5+ Earthquakes
 	private String earthquakesURL = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_week.atom";
 	
@@ -68,12 +70,18 @@ public class EarthquakeCityMap extends PApplet {
 	public void setup() {		
 		// (1) Initializing canvas and map tiles
 		size(900, 700, OPENGL);
+		
+		AbstractMapProvider providerEsri = new EsriProvider.NatGeoWorldMap();
+		//AbstractMapProvider providerGoogle = new Google.GoogleMapProvider();
+		
 		if (offline) {
 		    map = new UnfoldingMap(this, 200, 50, 650, 600, new MBTilesMapProvider(mbTilesString));
 		    earthquakesURL = "2.5_week.atom";  // The same feed, but saved August 7, 2015
 		}
 		else {
-			map = new UnfoldingMap(this, 200, 50, 650, 600, new Google.GoogleMapProvider());
+			map = new UnfoldingMap(this, 10, 10, 880, 680, providerEsri);
+			map.zoomAndPanTo(5, new Location(-33.0,-68.4));
+			//map = new UnfoldingMap(this, 200, 50, 650, 600, providerEsri);
 			// IF YOU WANT TO TEST WITH A LOCAL FILE, uncomment the next line
 		    //earthquakesURL = "2.5_week.atom";
 		}
@@ -85,7 +93,7 @@ public class EarthquakeCityMap extends PApplet {
 		//earthquakesURL = "test2.atom";
 		
 		// Uncomment this line to take the quiz
-		//earthquakesURL = "quiz2.atom";
+		earthquakesURL = "quiz2.atom";
 		
 		
 		// (2) Reading in earthquake data and geometric properties
@@ -116,7 +124,7 @@ public class EarthquakeCityMap extends PApplet {
 	    }
 
 	    // could be used for debugging
-	    printQuakes();
+	    //printQuakes();
 	 		
 	    // (3) Add markers to map
 	    //     NOTE: Country markers are not added to the map.  They are used
@@ -125,11 +133,14 @@ public class EarthquakeCityMap extends PApplet {
 	    map.addMarkers(cityMarkers);
 	    
 	    
+	    sortAndPrint(20);
+	    
+	    
 	}  // End setup
 	
 	
 	public void draw() {
-		background(0);
+		background(24, 24, 27);
 		map.draw();
 		addKey();
 		
@@ -139,6 +150,29 @@ public class EarthquakeCityMap extends PApplet {
 	// TODO: Add the method:
 	//   private void sortAndPrint(int numToPrint)
 	// and then call that method from setUp
+	private void sortAndPrint(int numToPrint) {
+		
+		List<EarthquakeMarker> earthquakes = new ArrayList<EarthquakeMarker>();
+		
+		for (Marker marker : quakeMarkers) {
+			earthquakes.add((EarthquakeMarker)marker);
+		}
+		
+		Collections.sort(earthquakes);
+		
+		if (numToPrint > earthquakes.size()) {
+			
+			for (int i = 0; i < earthquakes.size(); i++) {
+				System.out.println(earthquakes.get(i));
+			}
+			
+		} else {
+			
+			for (int i = 0; i < numToPrint; i++) {
+				System.out.println(earthquakes.get(i));
+			}
+		}
+	}
 	
 	/** Event handler that gets called automatically when the 
 	 * mouse moves.
@@ -265,65 +299,73 @@ public class EarthquakeCityMap extends PApplet {
 	// helper method to draw key in GUI
 	private void addKey() {	
 		// Remember you can use Processing's graphics methods here
-		fill(255, 250, 240);
-		
 		int xbase = 25;
-		int ybase = 50;
-		
+		int ybase = 25;
+
+		fill(244, 244, 245);
 		rect(xbase, ybase, 150, 250);
-		
+				
 		fill(0);
 		textAlign(LEFT, CENTER);
+		
+		// Key Title
 		textSize(12);
 		text("Earthquake Key", xbase+25, ybase+25);
 		
-		fill(150, 30, 30);
+		// Line 1
+		fill(0, 0, 0);
+		textAlign(LEFT, CENTER);
+		text("City Marker", 75, ((ybase+25) + 25 * 1));
+		
+		fill(0, 0, 0);
 		int tri_xbase = xbase + 35;
 		int tri_ybase = ybase + 50;
-		triangle(tri_xbase, tri_ybase-CityMarker.TRI_SIZE, tri_xbase-CityMarker.TRI_SIZE, 
-				tri_ybase+CityMarker.TRI_SIZE, tri_xbase+CityMarker.TRI_SIZE, 
-				tri_ybase+CityMarker.TRI_SIZE);
+		triangle(tri_xbase, tri_ybase-CityMarker.TRI_SIZE, tri_xbase-CityMarker.TRI_SIZE, tri_ybase+CityMarker.TRI_SIZE, tri_xbase+CityMarker.TRI_SIZE, tri_ybase+CityMarker.TRI_SIZE);
 
+		// Line 2
 		fill(0, 0, 0);
-		textAlign(LEFT, CENTER);
-		text("City Marker", tri_xbase + 15, tri_ybase);
-		
-		text("Land Quake", xbase+50, ybase+70);
-		text("Ocean Quake", xbase+50, ybase+90);
-		text("Size ~ Magnitude", xbase+25, ybase+110);
-		
+		text("Land Quake", 75, ((ybase+25) + 25 * 2));
 		fill(255, 255, 255);
-		ellipse(xbase+35, 
-				ybase+70, 
-				10, 
-				10);
-		rect(xbase+35-5, ybase+90-5, 10, 10);
+		ellipse(60, ((ybase+25) + 25 * 2), 10, 10);
 		
-		fill(color(255, 255, 0));
-		ellipse(xbase+35, ybase+140, 12, 12);
-		fill(color(0, 0, 255));
-		ellipse(xbase+35, ybase+160, 12, 12);
-		fill(color(255, 0, 0));
-		ellipse(xbase+35, ybase+180, 12, 12);
-		
-		textAlign(LEFT, CENTER);
+		// Line 3
 		fill(0, 0, 0);
-		text("Shallow", xbase+50, ybase+140);
-		text("Intermediate", xbase+50, ybase+160);
-		text("Deep", xbase+50, ybase+180);
-
-		text("Past hour", xbase+50, ybase+200);
-		
+		text("Ocean Quake", 75, ((ybase+25) + 25 * 3));
 		fill(255, 255, 255);
-		int centerx = xbase+35;
-		int centery = ybase+200;
-		ellipse(centerx, centery, 12, 12);
-
+		rect(55, ((ybase+25) + 25 * 3) - 5, 10, 10);
+		
+		// Line 4
+		fill(0, 0, 0);
+		text("Size - Magnitude", 50, ((ybase+25) + 25 * 4));
+		
+		// Line 5
+		fill(0, 0, 0);
+		text("Shallow", 75, ((ybase+25) + 25 * 5));
+		fill(234, 179, 8);
+		ellipse(60, ((ybase+25) + 25 * 5), 12, 12);
+		
+		// Line 6
+		fill(0, 0, 0);
+		text("Intermediate", 75, ((ybase+25) + 25 * 6));
+		fill(249, 115, 22);
+		ellipse(60, ((ybase+25) + 25 * 6), 12, 12);
+		
+		// Line 7
+		fill(0, 0, 0);
+		text("Deep", 75, ((ybase+25) + 25 * 7));
+		fill(220, 38, 38);
+		ellipse(60, ((ybase+25) + 25 * 7), 12, 12);
+		
+		// Line 8
+		fill(0);
+		text("Past hour", 75, ((ybase+25) + 25 * 8));
+		fill(255, 255, 255);
+		int pastHourElipseX = 60;
+		int pastHourElipseY = (ybase+25) + 25 * 8;
 		strokeWeight(2);
-		line(centerx-8, centery-8, centerx+8, centery+8);
-		line(centerx-8, centery+8, centerx+8, centery-8);
-		
-		
+		ellipse(pastHourElipseX,pastHourElipseY , 12, 12);
+		line(pastHourElipseX - 4, pastHourElipseY - 4, pastHourElipseX + 4, pastHourElipseY + 4);
+		line(pastHourElipseX - 4, pastHourElipseY + 4, pastHourElipseX + 4, pastHourElipseY - 4);
 	}
 
 	
@@ -409,5 +451,5 @@ public class EarthquakeCityMap extends PApplet {
 		}
 		return false;
 	}
-
+	
 }
