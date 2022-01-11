@@ -32,11 +32,10 @@ public class BasicDocument extends Document
 	 * @return The number of words in the document.
 	 */
 	@Override
-	public int getNumWords()
-	{
-		//TODO: Implement this method in week 2 according to the comments above.  
-		// See the Module 2 support videos if you need help.
-	    return 0;
+	public int getNumWords() {
+		List<String> tokens = getTokens("[(a-z)(A-Z)]+");
+		int	numWords = tokens.size();
+	    return numWords;
 	}
 	
 	/**
@@ -52,11 +51,10 @@ public class BasicDocument extends Document
 	 * @return The number of sentences in the document.
 	 */
 	@Override
-	public int getNumSentences()
-	{
-	    //TODO: Implement this method.  See the Module 2 support videos 
-        // if you need help.
-        return 0;
+	public int getNumSentences() {
+	    List<String> tokens = getTokens("[^?.!]+");
+		int	numSentences = tokens.size();
+	    return numSentences;
 	}
 	
 	/**
@@ -74,19 +72,30 @@ public class BasicDocument extends Document
 	 * @return The number of syllables in the document.
 	 */
 	@Override
-	public int getNumSyllables()
-	{
-	    //TODO: Implement this method in week 2.  See the Module 2 support videos 
-        // if you need help.  And note that there is no need to use a regular
-		// expression for the syllable counting.  We recommend you implement 
-		// the helper function countSyllables in Document.java using a loop, 
-		// and then call it here on each word.
-        return 0;
+	public int getNumSyllables() {
+
+		/*
+		//Solution using regex's.
+		List<String> tokens = getTokens("[aeiouyAEIOUY]+");
+		List<String> loneEs = getTokens("[^aeiouyAEIOUY]+[eE]\\b");
+		List<String> singleEs = getTokens("\\b[^aeiouyAEIOUY]*[eE]\\b");
+		return tokens.size() - (loneEs.size() - singleEs.size());
+		*/
+
+		//Solution using a loop.
+	    List<String> tokens = getTokens("[a-zA-Z]+");
+		int	numSyllables = 0;
+
+		for ( String word : tokens) {
+			numSyllables = numSyllables + countSyllables(word);
+		}
+
+	    return numSyllables;
 	}
 	
 	
-	/* The main method for testing this class. 
-	 * You are encouraged to add your own tests.  */
+	/* The main method for testing this class.*/
+	
 	public static void main(String[] args)
 	{
 		/* Each of the test cases below uses the method testCase.  The first 

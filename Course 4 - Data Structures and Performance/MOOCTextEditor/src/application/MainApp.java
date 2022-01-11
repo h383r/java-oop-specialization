@@ -23,6 +23,8 @@ import javafx.scene.text.Text;
 
 
 
+//@SuppressWarnings("restriction")
+
 public class MainApp extends Application {
 	private Stage primaryStage;
 	private BorderPane rootLayout;
@@ -77,7 +79,7 @@ public class MainApp extends Application {
         }
     }
     
-    
+
     
     // SHOW NEW STAGE METHODS
     
