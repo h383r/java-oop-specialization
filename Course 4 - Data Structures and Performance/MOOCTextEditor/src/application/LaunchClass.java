@@ -12,9 +12,8 @@ public class LaunchClass {
 	}
 	
 	public document.Document getDocument(String text) {
-		// Change this to BasicDocument(text) for week 1 only
-		return new document.BasicDocument(text);
-		//return new document.EfficientDocument(text);
+		//return new document.BasicDocument(text);
+		return new document.EfficientDocument(text);
 	}
 	
 	public textgen.MarkovTextGenerator getMTG() {
@@ -40,6 +39,5 @@ public class LaunchClass {
     public spelling.SpellingSuggest getSpellingSuggest(spelling.Dictionary dic) {
     	//return new spelling.SpellingSuggestNW(new spelling.NearbyWords(dic));
     	return new spelling.NearbyWords(dic);
-    
     }
 }
