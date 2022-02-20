@@ -47,20 +47,25 @@ public class EfficientDocument extends Document {
 		// Call getTokens on the text to preserve separate strings that are 
 		// either words or sentence-ending punctuation.  Ignore everything
 		// That is not a word or a sentence-ending puctuation.
-		List<String> tokens = getTokens("[!?.]+|[a-zA-Z]+");
-		
-		int size = tokens.size();
 
-		for(String token : tokens) {
+		List<String> tokens = getTokens("[!?.]+|[a-zA-Z]+");
+
+		numWords = 0;
+		numSyllables = 0;
+		numSentences = 0;
+
+		int index = 0;
+
+		for (String token : tokens) {
+			index++;
 
 			if (isWord(token)) {
-				numSyllables = numSyllables + countSyllables(token);
 				numWords++;
+				numSyllables += countSyllables(token);
+				if (index == tokens.size()) {
+					numSentences++;
+				}
 			} else {
-				numSentences++;
-			}
-
-			if (isWord(tokens.get(size - 1))) {
 				numSentences++;
 			}
 		}

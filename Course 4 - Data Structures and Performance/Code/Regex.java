@@ -27,30 +27,49 @@ public class Regex {
 
 
     public static void main (String[] args) {
+		
+		Regex reg = new Regex();
+
+		//String d = "this is a test.23,54,390.";
+		//List<String> tokens = reg.getTokens("[a-z0-9 ]+", d);
+		//List<String> tokens = reg.getTokens("[a-z0-9]+", d);
+		//List<String> tokens = reg.getTokens("[a-z ]+|[0-9]+", d);
+		//List<String> tokens = reg.getTokens("[^.,]+", d);
+		//List<String> tokens = reg.getTokens("[^ ]+", d);
+		
+		String d = "one (1), two (2), three (3)";
+		List<String> tokens = reg.getTokens("[^, ]+", d);
+		//List<String> tokens = reg.getTokens("[^,]+", d);
+		//List<String> tokens = reg.getTokens("[a-z()0-9]+", d);
+		//List<String> tokens = reg.getTokens("[a-z()0-9]+", d);
+
+		for (String token : tokens) {
+			System.out.print(token + ", ");
+		}
+
 
 		/*
-        Regex reg = new Regex();
         
 		String pattern = "it|st";
         String text = "Splitting a string, it's as easy as 1 2 33! Right?";
         
 		List<String> test = new ArrayList<String>();
         test = reg.getTokens(pattern, text);
-        
 		System.out.println(test);
-		*/
 		
-
-		// Practice Quiz:
-
+		
 		String text = "Hurray!!#! It's Friday! finally...";
 		String[] words = text.split("!+");
-
+		
 		for (String word : words) {
 			System.out.print(word + ", ");
 		}
+		*/
 
 
+
+		
+		
     }
 
 
