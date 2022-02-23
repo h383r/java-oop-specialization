@@ -17,7 +17,7 @@ public class NearbyWords implements SpellingSuggest {
 	// THRESHOLD to determine how many words to look through when looking
 	// for spelling suggestions (stops prohibitively long searching)
 	// For use in the Optional Optimization in Part 2.
-	private static final int THRESHOLD = 100; 
+	private static final int THRESHOLD = 1000; 
 
 	Dictionary dict;
 
@@ -100,13 +100,13 @@ public class NearbyWords implements SpellingSuggest {
 	 */
 	public void deletions(String s, List<String> currentList, boolean wordsOnly ) {
 		
-		for (int i = 0; i < s.length(); i++) {
+		for (int i = 0; i <= s.length(); i++) {
 
 			StringBuffer stringBuffer = new StringBuffer(s);
 			stringBuffer.deleteCharAt(i);
 
 			if (!currentList.contains(stringBuffer.toString()) && (!wordsOnly || dict.isWord(stringBuffer.toString())) && !s.equals(stringBuffer.toString())) {
-				currentList.add(stringBuffer.toString());
+				currentList.add(stringBuffer.toString();
 			}
 		}
 	}
@@ -120,82 +120,39 @@ public class NearbyWords implements SpellingSuggest {
 	@Override
 	public List<String> suggestions(String word, int numSuggestions) {
 
-		/*
-
-		Input: word for which to provide number of spelling suggestions
-		Input: number of maximum suggestions to provide
-		Output: list of spelling suggestions
-	
-		Create a queue to hold words to explore
-		Create a visited set to avoid looking at the same String repeatedly
-		Create list of real words to return when finished
-	
-		Add the initial word to the queue and visited
-	
-		while the queue has elements and we need more suggestions
-			remove the word from the start of the queue and assign to curr
-			get a list of neighbors (strings one mutation away from curr)
-			for each n in the list of neighbors
-				if n is not visited
-				add n to the visited set
-				add n to the back of the queue
-				if n is a word in the dictionary
-				add n to the list of words to return
-		return the list of real words
-
-		*/
-
-		// String to explore
-		List<String> queue = new LinkedList<String>();
-		
-		// to avoid exploring the same string multiple times
-		HashSet<String> visited = new HashSet<String>();
-		
-		// words to return
-		List<String> retList = new LinkedList<String>();
+		// initial variables
+		List<String> queue = new LinkedList<String>();     // String to explore
+		HashSet<String> visited = new HashSet<String>();   // to avoid exploring the same  
+														   // string multiple times
+		List<String> retList = new LinkedList<String>();   // words to return
 		 
+		
 		// insert first node
 		queue.add(word);
 		visited.add(word);
-		int count = 0;
-
-		while (!queue.isEmpty() && count < numSuggestions) {
-			
-			String current = queue.remove(0);
-			List<String> distanceOne = distanceOne(current, false);
-
-			for (String n : distanceOne) {
-				if (!visited.contains(n)) {
-					visited.add(n);
-					queue.add(n);
-					if (dict.isWord(n)) {
-						retList.add(n);
-						++count;
-					}
-				}
-				if (visited.size() == THRESHOLD && retList.size() > 0) {
-					break;
-				}
-			}
-		}
+					
+		// TODO: Implement the remainder of this method, see assignment for algorithm
+		
 		return retList;
+
 	}	
-	
-	/* basic testing code to get started */
-	public static void main(String[] args) {
-		
-		String word = "i";
-		Dictionary d = new DictionaryHashSet();
-		DictionaryLoader.loadDictionary(d, "data/dict.txt");
-		NearbyWords w = new NearbyWords(d);
-		List<String> l = w.distanceOne(word, true);
-		System.out.println("One away word Strings for for \""+word+"\" are:");
-		System.out.println(l+"\n");
-		
-		word = "tailo";
-		List<String> suggest = w.suggestions(word, 10);
-		System.out.println("Spelling Suggestions for \""+word+"\" are:");
-		System.out.println(suggest);
-    }
+
+   public static void main(String[] args) {
+	   /* basic testing code to get started
+	   String word = "i";
+	   // Pass NearbyWords any Dictionary implementation you prefer
+	   Dictionary d = new DictionaryHashSet();
+	   DictionaryLoader.loadDictionary(d, "data/dict.txt");
+	   NearbyWords w = new NearbyWords(d);
+	   List<String> l = w.distanceOne(word, true);
+	   System.out.println("One away word Strings for for \""+word+"\" are:");
+	   System.out.println(l+"\n");
+
+	   word = "tailo";
+	   List<String> suggest = w.suggestions(word, 10);
+	   System.out.println("Spelling Suggestions for \""+word+"\" are:");
+	   System.out.println(suggest);
+	   */
+   }
 
 }
