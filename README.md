@@ -3,43 +3,23 @@
 
 ## Course 1: Solving Problems with Software
 
-- **Week 1: Java Syntax and Semantics**
-    - 1.1.1. Calculating a Shape’s Perimeter
+- Fundamental Java Syntax and Semantics
 
-- **Week 2: Strings in Java**
-    - 1.2.1. Finding a Gene and Web Links
-    - 1.2.2. Finding Many Genes
-    - 1.2.3. Storing All Genes
+- Strings in Java
 
-- **Week 3: CSV Files and Basic Statics in Java**
-    - 1.2.3. Debugging Code
-    - 1.3.1. Parsing Export Data
-    - 1.3.2. Parsing Weather Data
-
-- **Week 4: Mini Project:**
-    - 1.4.1. Names Project
-    - 1.4.2. Grayscale Algorithm
+- CSV Files and Basic Statistics in Java
 
 ## Course 2: Arrays, Lists, and Structured Data
 
-- **Week 1: Cryptography**
-    - 2.1.1. Implementing the Caesar Cipher
-    - 2.1.2. Object Oriented Caesar Cipher
+- ArrayList 
 
-- **Week 2: GladLibs: Stories from Templates**
-    - 2.2.1. Telling a Random Story
-    - 2.2.2. GladLibs
+- Web Server Logs
 
-- **Week 3: Web Server Logs**
-    - 2.3.1. Reading Log Files
-
-- **Week 4: Cryptography**
-    - 2.3.2. Breaking the Vigenere Cipher
+- Cryptography
 
 ## Course 3: Object Oriented Programming in Java
-- Visualizing Data
 
-- Memory Models, Scope, and Starting the Project
+- Memory Models, Scope
 
 - Graphical output: Creating GUIs and Displaying Data
 
